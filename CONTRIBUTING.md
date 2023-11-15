@@ -1,7 +1,9 @@
-# Contributing Guide
+# Guide for Contributors
 
-This is a contributing guide for group 20 for the course DSCI 522. The only people permitted to make contributions are the 4 members assigned to this group. 
-
-Make sure to refer to our [code of conduct page](./CODE_OF_CONDUCT.md) to understand what we expect from the contributors to ensure the community is safe, friendly, and inclusive.
-
-This repository is intended for a data analysis project. For more details refer to the [README](README.md) file.
+We welcome all contributions to this project!
+If you notice a bug, or have a feature request,
+please open up an issue [here](https://github.com/UBC-DSCI/REPOSITORY_NAME/issues).
+If you'd like to contribute a feature or bug fix,
+you can fork our repo and submit a pull request.
+We will review pull requests within 7 days.
+All contributors must abide by our [code of conduct](CODE_OF_CONDUCT.md).
