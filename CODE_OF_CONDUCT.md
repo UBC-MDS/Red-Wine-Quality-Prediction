@@ -1,17 +1,3 @@
----
-jupyter:
-  jupytext:
-    text_representation:
-      extension: .md
-      format_name: markdown
-      format_version: '1.3'
-      jupytext_version: 1.15.1
-  kernelspec:
-    display_name: Python [conda env:dsci522_group20_env]
-    language: python
-    name: conda-env-dsci522_group20_env-py
----
-
 # Code of Conduct
 
 ## Our Pledge
