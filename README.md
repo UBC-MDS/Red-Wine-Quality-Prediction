@@ -15,18 +15,30 @@ The dataset used in this project was accessed from UC Irvine Machine Learning Re
 To run this project, follow these steps.
 
 1. Clone the repository.
-```git clone <include link once name is changed> ```
+``` bash
+git clone https://github.com/UBC-MDS/Red-Wine-Quality-Prediction
+```
 
 2. Create the environment. In the root of the repository run:  
-```conda env create --file environment.yml```
+``` bash
+conda env create --file environment.yaml
+```
 
-3. Open the analysis in Jupyter lab. In the root of the repository run: 
-```conda activate <change name of env>```
-```jupyter lab```
+3. Open the analysis in Jupyter lab. In the root of the repository run:
+``` bash
+conda activate red_wine_quality_prediction
+jupyter lab
+```
+
+4. Open `src/red_wine_quality_prediction_report.ipynb` in Jupyter Lab 
+
+5. Under the "Kernel" tab click "Restart Kernel and Run All Cells"
 
 ## Dependencies
 
-***[complete once finalized]***
+- `conda` (version 23.9.0 or higher)
+- `nb_conda_kernels` (version 2.3.1 or higher)
+- Python and packages listed in [`environment.yaml`](environment.yaml)
 
 # License
 
