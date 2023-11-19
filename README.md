@@ -52,3 +52,11 @@ We welcome contributions! See `CONTRIBUTING.md` for details.
 
 ***[dataset reference]***
 P. Cortez, A. Cerdeira, F. Almeida, T. Matos and J. Reis. Modeling wine preferences by data mining from physicochemical properties. In *Decision Support Systems*, Elsevier, 47(4):547-553, 2009.
+
+UCI Machine Learning Repository. (2017). https://archive.ics.uci.edu/
+
+Red Wine Market Size, Industry Share, Trends, Analysis Forecast. (2023, January). https://www.thebusinessresearchcompany.com/report/red-wine-global-market-report#:~:text=The%20global%20red%20wine%20market%20size%20grew%20from%20%24102.97%20billion,least%20in%20the%20short%20term
+
+Pramoditha, R. (2022, January 6). How do you apply PCA to Logistic Regression to remove Multicollinearity? Medium. https://towardsdatascience.com/how-do-you-apply-pca-to-logistic-regression-to-remove-multicollinearity-10b7f8e89f9b#:~:text=PCA%20(Principal%20Component%20Analysis)%20takes,effectively%20eliminate%20multicollinearity%20between%20features.
+
+Deciphering interactions in logistic regression. (n.d.). https://stats.oarc.ucla.edu/stata/seminars/deciphering-interactions-in-logistic-regression/#:~:text=Logistic%20interactions%20are%20a%20complex%20concept&text=But%20in%20logistic%20regression%20interaction,can%20make%20a%20big%20difference.
