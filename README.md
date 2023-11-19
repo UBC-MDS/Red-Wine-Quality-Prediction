@@ -1,6 +1,6 @@
 # Red Wine Quality Prediction
 
-  - author: Nicole Bidwell, Alysen Townsley, Ruocong Sun, Hongyang Zhang
+  - author: Nicole Bidwell, Ruocong Sun, Alysen Townsley, Hongyang Zhang
 
 ## About 
 
