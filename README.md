@@ -36,8 +36,8 @@ jupyter lab
 
 ## Dependencies
 
-- `conda` (version 23.9.0 or higher)
-- `nb_conda_kernels` (version 2.3.1 or higher)
+- `conda` (version $\geq$ 23.9.0)
+- `nb_conda_kernels` (version $\geq$ 2.3.1)
 - Python and packages listed in [`environment.yaml`](environment.yaml)
 
 # License
