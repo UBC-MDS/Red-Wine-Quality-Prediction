@@ -24,6 +24,7 @@ dependencies:
     - jinja2
     - pytest
     - pip>=23.2.1    
+    - pytest=7.4.3
     - pip:
         - mglearn
         - graphviz
