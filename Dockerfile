@@ -1,6 +1,18 @@
-FROM ubcdsci/jupyterlab:v0.9.0
+FROM quay.io/jupyter/minimal-notebook:2023-11-19
 
-# Install packages with specific versions from conda-forge
-# Packages and versions specified in environment.yml
-COPY environment.yaml .
-RUN conda env update --file environment.yaml
+# Install Conda packages
+# Install Conda packages
+RUN conda install -y python=3.11.6 \
+    ipykernel \
+    matplotlib \
+    pandas \
+    scikit-learn \
+    requests \
+    ipython \
+    graphviz \
+    python-graphviz \
+    lightgbm \
+    altair
+
+
+
