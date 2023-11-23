@@ -1,0 +1,7 @@
+services:
+  test2-env:
+    image: test2
+    ports:
+      - "8888:8888"
+    volumes:
+      -  .:/home/jovyan/work2 test2 
