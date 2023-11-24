@@ -8,12 +8,21 @@ The aim of this project is to create a classification model to predict the quali
 
 The dataset used in this project was accessed from UC Irvine Machine Learning Repository, found [here](https://archive.ics.uci.edu/dataset/186/wine+quality). Specifically, the red wine dataset, `winequality-red.csv`, was used. The dataset was originally referenced from the work of Paulo Cortez, António Cerdeira, Fernando Almeida, Telmo Matos, and José Reis. Further details of their work can be found [here](http://www3.dsi.uminho.pt/pcortez/wine/). The features in the dataset include: fixed acidity, volatile acidity, citric acid, residual sugar, chlorides, free sulfur dioxide, total sulfur dioxide, density, pH, sulphates, and alcohol. 
 
-# Installation
+# Usage
+
+This project can be run with either Docker (primary option) or a Virtual Environment (secondary option). Instructions for using both methods are shown below. 
 
 ## Set up
 
-To run this project, follow these steps.
+### Docker:
+1. Clone the repository.
+``` bash
+git clone https://github.com/UBC-MDS/Red-Wine-Quality-Prediction
+```
 
+2. [Install](https://www.docker.com/get-started/) and launch Docker on your computer.
+
+### Virtual Environment:
 1. Clone the repository.
 ``` bash
 git clone https://github.com/UBC-MDS/Red-Wine-Quality-Prediction
@@ -23,19 +32,39 @@ git clone https://github.com/UBC-MDS/Red-Wine-Quality-Prediction
 ``` bash
 conda env create --file environment.yaml
 ```
+## Running the Analysis
 
-3. Open the analysis in Jupyter lab. In the root of the repository run:
+### Docker:
+
+1. Start a new command line terminal session. Navigate to the root of this project repository (which you have just cloned on your local machine). Enter this command:
+``` bash
+docker compose up
+```
+
+2. In the terminal output you will see several URLs. Copy the one which starts with 'http://127.0.0.1:8888' and paste it into your web brower URL panel
+
+3. Open `src/red_wine_quality_prediction_report.ipynb` in Jupyter Lab 
+
+4. Under the "Kernel" tab click "Restart Kernel and Run All Cells"
+
+
+### Virtual Environment:
+1. Open the analysis in Jupyter lab. In the root of the repository run:
 ``` bash
 conda activate red_wine_quality_prediction
 jupyter lab
 ```
 
-4. Open `src/red_wine_quality_prediction_report.ipynb` in Jupyter Lab 
+2. Open `src/red_wine_quality_prediction_report.ipynb` in Jupyter Lab 
 
-5. Under the "Kernel" tab click "Restart Kernel and Run All Cells"
+3. Under the "Kernel" tab click "Restart Kernel and Run All Cells"
 
 ## Dependencies
 
+Docker:
+- [Docker](https://www.docker.com/) is the program used to build the container for the software used in this project. 
+
+Virtual Environment:
 - `conda` (version $\geq$ 23.9.0)
 - `nb_conda_kernels` (version $\geq$ 2.3.1)
 - Python and packages listed in [`environment.yaml`](environment.yaml)
