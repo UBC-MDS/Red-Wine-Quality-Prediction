@@ -36,7 +36,7 @@ conda env create --file environment.yaml
 
 ### Docker:
 
-1. Start a new command line terminal session. Navigate to the root of this project repository (which you have just cloned on your local machine). Enter this command:
+1. Start a new terminal session. Navigate to the root of this project repository (which you have just cloned on your local machine). Enter this command:
 ``` bash
 docker compose up
 ```
