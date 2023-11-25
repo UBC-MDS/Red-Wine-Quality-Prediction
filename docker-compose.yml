@@ -2,7 +2,7 @@ services:
   Quality-wine-env:
     image: sungg888/red-wine-quality-prediction:4f5e021
     ports:
-      - "8999:8888"
+      - "8888:8888"
     volumes:
       - .:/home/jovyan/work
     deploy:
