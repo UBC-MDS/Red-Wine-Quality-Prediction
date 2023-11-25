@@ -43,7 +43,7 @@ docker compose up
 
 2. In the terminal output you will see several URLs. Copy the one which starts with 'http://127.0.0.1:8888' and paste it into your web brower URL panel
 
-3. Open `src/red_wine_quality_prediction_report.ipynb` in Jupyter Lab 
+3. Open `notebooks/red_wine_quality_prediction_report.ipynb` in Jupyter Lab 
 
 4. Under the "Kernel" tab click "Restart Kernel and Run All Cells"
 
