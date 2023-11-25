@@ -1,7 +1,12 @@
 services:
-  RedWine-env:
-    image: test3
+  Quality-wine-env:
+    image: sungg888/red-wine-quality-prediction:4f5e021
     ports:
-      - "8888:8888"
+      - "8999:8888"
     volumes:
-      -  .:/home/jovyan/work2 test3
+      - .:/home/jovyan/work
+    deploy:
+      resources:
+        limits:
+          memory: 10G
+    platform: linux/amd64 # For Mac M1/M2 chips
