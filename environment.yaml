@@ -1,6 +1,3 @@
-# This environment.yaml file was adapted from the DSCI 571 fall 2023 semester environment file,
-# due to the similar nature of the analysis. The original environment file was created by Varada Kolhatkar.
-
 # Required packages for the Group Project completed for DSCI 522.
 # Perform the following command in your conda base environment:
 # conda env create -f environment.yaml
