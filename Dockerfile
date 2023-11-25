@@ -8,5 +8,6 @@ RUN conda install -y python=3.11.6 \
     pandas=2.1.3 \
     scikit-learn=1.3.2 \
     requests=2.31.0 \
-    ipython=8.17.2
+    ipython=8.17.2 \
+    pytest=7.4.3
 RUN pip install altair==5.1.2
