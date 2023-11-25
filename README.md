@@ -55,7 +55,7 @@ conda activate red_wine_quality_prediction
 jupyter lab
 ```
 
-2. Open `src/red_wine_quality_prediction_report.ipynb` in Jupyter Lab 
+2. Open `notebooks/red_wine_quality_prediction_report.ipynb` in Jupyter Lab 
 
 3. Under the "Kernel" tab click "Restart Kernel and Run All Cells"
 
