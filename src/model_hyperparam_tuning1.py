@@ -6,31 +6,18 @@ from sklearn.svm import SVC
 from sklearn.model_selection import GridSearchCV
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
-import pickle
-import click
-import json
-import sys
-import pandas as pd
 
-@click.command()
-@click.argument('x', type=str)
-@click.argument('y', type=str)
-@click.argument('model', type=str)
-def model_hyperparam_tuning(x, y, model):
+def model_hyperparam_tuning(X, y, model, params):
     """
     Conducts hyperparameter tuning for a model over a clean data set with only numeric features 
-    and no missing data. Saves the GridSearchCV object in the results/models folder and also
-    returns it.
+    and no missing data.
 
     Parameters:
     ----------
-    X : pandas.DataFrame or str
-        The feature data set. Can be either a pandas data frame or a path 
-        to a csv file (must be comma-delimited). Data must be all numeric
-        with no missing value.
+    X : pandas.DataFrame
+        The feature data set. The featuers must be all numeric.
     y : pandas.DataFrame
-        The response data set. Can be either a pandas data frame or a path 
-        to a csv file (must be comma-delimited).
+        The response data set.
     model : str
         The model. Possible values are:
         - 'logistic': Logistic Regression.
@@ -54,10 +41,6 @@ def model_hyperparam_tuning(x, y, model):
     >>> result.cv_results_
     
     """
-    if isinstance(x, str):
-        x = pd.read_csv(x)
-    if isinstance(y, str):
-        y = (pd.read_csv(y)).iloc[:, 0]
 
     models = {'logistic': LogisticRegression(random_state=522),
               'decision_tree': DecisionTreeClassifier(random_state=522),
@@ -66,20 +49,11 @@ def model_hyperparam_tuning(x, y, model):
 
     pipe = Pipeline([('scl', StandardScaler()),
                      ('model', models[model])])
-    
-    #if isinstance(params, str):
-     #   params = json.loads(params)
-        
-    param_dict = {'model__C': [0.001, 0.01, 0.1, 1.0, 10, 100, 1000], 'model__class_weight': ['balanced', None]}
+
+    #param_dict = {}
     #for param in params:
     #    param_dict['model__' + param] = params[param]
 
-    grid_search = GridSearchCV(estimator=pipe, param_grid=[param_dict], n_jobs=-1, return_train_score=True)
+    grid_search = GridSearchCV(estimator=pipe, param_grid=[params], n_jobs=-1, return_train_score=True)
     
-   # with open(("../results/models/" + model + "_grid_search"), 'wb') as f:
-   #     pickle.dump(grid_search.fit(x, y), f)
-
-    return grid_search.fit(x, y)
-
-if __name__ == '__main__':
-    model_hyperparam_tuning()
+    return grid_search.fit(X, y)
