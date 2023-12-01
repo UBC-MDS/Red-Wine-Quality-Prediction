@@ -50,10 +50,10 @@ def model_hyperparam_tuning(X, y, model, params):
     pipe = Pipeline([('scl', StandardScaler()),
                      ('model', models[model])])
 
-    #param_dict = {}
-    #for param in params:
-    #    param_dict['model__' + param] = params[param]
+    param_dict = {}
+    for param in params:
+        param_dict['model__' + param] = params[param]
 
-    grid_search = GridSearchCV(estimator=pipe, param_grid=[params], n_jobs=-1, return_train_score=True)
+    grid_search = GridSearchCV(estimator=pipe, param_grid=[param_dict], n_jobs=-1, return_train_score=True)
     
     return grid_search.fit(X, y)

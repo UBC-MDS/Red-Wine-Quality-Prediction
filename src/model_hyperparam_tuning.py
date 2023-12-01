@@ -8,9 +8,8 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 import pickle
 import click
-import json
-import sys
 import pandas as pd
+import numpy as np
 
 @click.command()
 @click.argument('x', type=str)
@@ -66,18 +65,26 @@ def model_hyperparam_tuning(x, y, model):
 
     pipe = Pipeline([('scl', StandardScaler()),
                      ('model', models[model])])
-    
-    #if isinstance(params, str):
-     #   params = json.loads(params)
-        
-    param_dict = {'model__C': [0.001, 0.01, 0.1, 1.0, 10, 100, 1000], 'model__class_weight': ['balanced', None]}
-    #for param in params:
-    #    param_dict['model__' + param] = params[param]
 
-    grid_search = GridSearchCV(estimator=pipe, param_grid=[param_dict], n_jobs=-1, return_train_score=True)
+    param_dict = {'logistic': {'model__C': [0.001, 0.01, 0.1, 1.0, 10, 100, 1000], 'model__class_weight': ['balanced', None]},
+                  'decision_tree': {'model__criterion': ['gini', 'entropy'], 'model__max_depth': 2 ** np.arange(8), 'model__class_weight': ['balanced', None]},
+                  'knn': {'model__n_neighbors': [1, 2, 3, 4, 5, 6]},
+                  'svc': {'model__C': [0.001, 0.01, 0.1, 1.0, 10, 100, 1000], 'model__gamma': [0.001, 0.01, 0.1, 1.0, 10, 100, 1000], 'model__class_weight': ['balanced', None]}}
+        
+    grid_search = GridSearchCV(estimator=pipe, param_grid=[param_dict[model]], n_jobs=-1, return_train_score=True)
+    grid_search.fit(x, y)
+
+    items = ["mean_test_score", "mean_train_score", "mean_fit_time", "rank_test_score"] + ['param_' + str for str in list(param_dict[model].keys())]
     
-   # with open(("../results/models/" + model + "_grid_search"), 'wb') as f:
-   #     pickle.dump(grid_search.fit(x, y), f)
+    gs_df = (pd.DataFrame(grid_search.cv_results_)[items].sort_values(
+        "rank_test_score"
+    ).head(1).drop(
+        ['rank_test_score'], axis=1
+    ).assign(model_name=model).set_index('model_name'))
+
+    gs_df = gs_df.where(pd.notnull(gs_df), 'No Class Weight')
+
+    gs_df.to_csv(('../results/tables/' + model + '_grid_search.csv'), index=True)
 
     return grid_search.fit(x, y)
 
