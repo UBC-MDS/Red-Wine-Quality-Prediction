@@ -3,9 +3,7 @@
 # Required imports
 import pandas as pd
 import click
-import matplotlib.pyplot as plt
 import altair as alt
-import seaborn as sns
 import io
 
 @click.command()
