@@ -2,25 +2,65 @@ import pandas as pd
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.svm import SVC
+import click
 
-def test_set_deployment():
-    comparison_df = pd.read_csv('../results/tables/comparison_df.csv', index_col=0)
+@click.command()
+@click.argument('comparison_folder', type=str)
+@click.argument('x_train_folder', type=str)
+@click.argument('y_train_folder', type=str)
+@click.argument('x_test_folder', type=str)
+@click.argument('y_test_folder', type=str)
+@click.argument('result_folder', type=str)
+def test_set_deployment(comparison_folder, 
+                        x_train_folder, y_train_folder, 
+                        x_test_folder, y_test_folder, 
+                        result_folder):
+    """
+    Uses the best model from hyperparameter tuning on the test set, and exports the score
+    as a csv file.
+
+    Parameters:
+    ----------
+    comparison_folder : str
+        The path to folder containing the summary file for all tables. Must end the path with a 
+        slash.
+    x_train_folder : str
+        The path to folder containing X_train. Must end the path with a
+        slash. Mind the lower case x.
+    y_train_folder : str
+        The path to folder containing y_train. Must end the path with a
+        slash.
+    x_test_folder : str
+        The path to folder containing X_test. Must end the path with a
+        slash. Mind the lower case x.
+    y_test_folder : str
+        The path to folder containing y_test. Must end the path with a
+        slash.
+    result_folder : str
+        The path to the folder the csv is exported to. Must end the path 
+        with a slash.
+        
+    Examples:
+    --------
+    >>> model_table_combination('../results/tables/', '../results/tables/')
+    
+    """
+    comparison_df = pd.read_csv((comparison_folder + 'comparison_df.csv'), index_col=0)
     svc_C = comparison_df.loc['svc', 'param_model__C']
     svc_gamma = comparison_df.loc['svc', 'param_model__gamma']
     svc_class_weight = None if comparison_df.loc['svc', 'param_model__class_weight'] == 'No Class Weight' else 'balanced'
-    
-    X_test = pd.read_csv('../results/tables/X_test.csv')
-    y_test = (pd.read_csv('../results/tables/y_test.csv')).iloc[:, 0]
-    X_train = pd.read_csv('../results/tables/X_train.csv')
-    y_train = (pd.read_csv('../results/tables/y_train.csv')).iloc[:, 0]
+
+    X_train = pd.read_csv((x_train_folder + 'X_train.csv'))
+    y_train = (pd.read_csv((y_train_folder + 'y_train.csv'))).iloc[:, 0]
+    X_test = pd.read_csv((x_test_folder + 'x_test.csv'))
+    y_test = (pd.read_csv((y_test_folder + 'y_test.csv'))).iloc[:, 0]
     
     best_pipe = make_pipeline(StandardScaler(), SVC(C=svc_C, gamma=svc_gamma, class_weight=svc_class_weight))
     best_pipe.fit(X_train, y_train)
     
     performance = pd.DataFrame({'test_set_score': [best_pipe.score(X_test, y_test)]})
     
-    performance.to_csv(('../results/tables/test_set_score.csv'), index=True)
+    performance.to_csv((result_folder + 'test_set_score.csv'), index=True)
 
 if __name__ == '__main__':
     test_set_deployment()
-

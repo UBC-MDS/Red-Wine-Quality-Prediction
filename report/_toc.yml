@@ -1,0 +1,4 @@
+format: jb-book
+root: dsci522-group20
+chapters:
+- file: notebooks

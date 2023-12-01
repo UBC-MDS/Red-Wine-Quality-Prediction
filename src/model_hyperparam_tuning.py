@@ -15,30 +15,31 @@ import numpy as np
 @click.argument('x', type=str)
 @click.argument('y', type=str)
 @click.argument('model', type=str)
-def model_hyperparam_tuning(x, y, model):
+@click.argument('export_folder', type=str)
+def model_hyperparam_tuning(x, y, model, export_folder):
     """
-    Conducts hyperparameter tuning for a model over a clean data set with only numeric features 
-    and no missing data. Saves the GridSearchCV object in the results/models folder and also
-    returns it.
+    Tunes the hyperparameters (fixed choice and range of values) using cross-validation
+    and exports in csv file the details of the best performing model. Also returns the
+    fitted GridSearchCV object.
 
     Parameters:
     ----------
-    X : pandas.DataFrame or str
+    x : pandas.DataFrame or str
         The feature data set. Can be either a pandas data frame or a path 
         to a csv file (must be comma-delimited). Data must be all numeric
         with no missing value.
     y : pandas.DataFrame
         The response data set. Can be either a pandas data frame or a path 
-        to a csv file (must be comma-delimited).
+        to a csv file (must be comma-delimited). Data must be with no missing
+        value.
     model : str
         The model. Possible values are:
         - 'logistic': Logistic Regression.
         - 'decision_tree': Decision Tree Classifier.
         - 'knn': k-Nearest Neighbors Classifier.
         - 'svc': Support Vector Classifier.
-    params : dict
-        Dictionary for hyperparameters. The keys are the hyperparameter names and the values are
-        lists containing the range of values.
+    export_folder : str
+        Path of where to export the csv file, including the file name.
 
     Returns:
     -------
@@ -47,9 +48,10 @@ def model_hyperparam_tuning(x, y, model):
         
     Examples:
     --------
-    >>> X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.3, random_state = 522)
-    >>> result = model_hyperparam_tuning(X_train, y_train, 'logistic', {'C': [0.001, 0.01, 0.1, 1.0, 10, 100, 1000],
-                                                                        'class_weight': ['balanced', None]})
+    >>> X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.3, 
+    >>>                                                     random_state = 522)
+    >>> result = model_hyperparam_tuning(X_train, y_train, 
+    >>>                                 'logistic', '../results/tables/logistic_grid_search.csv')
     >>> result.cv_results_
     
     """
@@ -66,15 +68,24 @@ def model_hyperparam_tuning(x, y, model):
     pipe = Pipeline([('scl', StandardScaler()),
                      ('model', models[model])])
 
-    param_dict = {'logistic': {'model__C': [0.001, 0.01, 0.1, 1.0, 10, 100, 1000], 'model__class_weight': ['balanced', None]},
-                  'decision_tree': {'model__criterion': ['gini', 'entropy'], 'model__max_depth': 2 ** np.arange(8), 'model__class_weight': ['balanced', None]},
+    param_dict = {'logistic': {'model__C': [0.001, 0.01, 0.1, 1.0, 10, 100, 1000], 
+                               'model__class_weight': ['balanced', None]},
+                  'decision_tree': {'model__criterion': ['gini', 'entropy'], 
+                                    'model__max_depth': 2 ** np.arange(8), 
+                                    'model__class_weight': ['balanced', None]},
                   'knn': {'model__n_neighbors': [1, 2, 3, 4, 5, 6]},
-                  'svc': {'model__C': [0.001, 0.01, 0.1, 1.0, 10, 100, 1000], 'model__gamma': [0.001, 0.01, 0.1, 1.0, 10, 100, 1000], 'model__class_weight': ['balanced', None]}}
+                  'svc': {'model__C': [0.001, 0.01, 0.1, 1.0, 10, 100, 1000], 
+                          'model__gamma': [0.001, 0.01, 0.1, 1.0, 10, 100, 1000], 
+                          'model__class_weight': ['balanced', None]}}
         
     grid_search = GridSearchCV(estimator=pipe, param_grid=[param_dict[model]], n_jobs=-1, return_train_score=True)
     grid_search.fit(x, y)
 
-    items = ["mean_test_score", "mean_train_score", "mean_fit_time", "rank_test_score"] + ['param_' + str for str in list(param_dict[model].keys())]
+    items = [
+        "mean_test_score", "mean_train_score", "mean_fit_time", "rank_test_score"
+    ] + [
+        'param_' + str for str in list(param_dict[model].keys())
+    ]
     
     gs_df = (pd.DataFrame(grid_search.cv_results_)[items].sort_values(
         "rank_test_score"
@@ -84,7 +95,7 @@ def model_hyperparam_tuning(x, y, model):
 
     gs_df = gs_df.where(pd.notnull(gs_df), 'No Class Weight')
 
-    gs_df.to_csv(('../results/tables/' + model + '_grid_search.csv'), index=True)
+    gs_df.to_csv(export_folder, index=True)
 
     return grid_search.fit(x, y)
 
