@@ -16,33 +16,35 @@ def test_set_deployment(comparison_folder,
                         x_test_folder, y_test_folder, 
                         result_folder):
     """
-    Uses the best model from hyperparameter tuning on the test set, and exports the score
+    Uses the best model (SVC) from hyperparameter tuning on the test set, and exports the score
     as a csv file.
 
     Parameters:
     ----------
     comparison_folder : str
         The path to folder containing the summary file for all tables. Must end the path with a 
-        slash.
+        slash. File name must be 'comparison_df.csv'.
     x_train_folder : str
         The path to folder containing X_train. Must end the path with a
-        slash. Mind the lower case x.
+        slash. Mind the lower case x. File name must be 'X_train.csv'.
     y_train_folder : str
         The path to folder containing y_train. Must end the path with a
-        slash.
+        slash. File name must be 'y_train.csv'.
     x_test_folder : str
         The path to folder containing X_test. Must end the path with a
-        slash. Mind the lower case x.
+        slash. Mind the lower case x. File name must be 'X_test.csv'.
     y_test_folder : str
         The path to folder containing y_test. Must end the path with a
-        slash.
+        slash. File name must be 'y_test.csv'.
     result_folder : str
         The path to the folder the csv is exported to. Must end the path 
-        with a slash.
+        with a slash. File name is fixed to be 'test_set_score.csv'.
         
     Examples:
     --------
-    >>> model_table_combination('../results/tables/', '../results/tables/')
+    >>> test_set_deployment('../results/tables/', '../results/tables/', 
+    >>>                     '../results/tables/', '../results/tables/', 
+    >>>                     '../results/tables/', '../results/tables/')
     
     """
     comparison_df = pd.read_csv((comparison_folder + 'comparison_df.csv'), index_col=0)

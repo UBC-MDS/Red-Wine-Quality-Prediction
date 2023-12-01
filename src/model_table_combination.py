@@ -13,10 +13,15 @@ def model_table_combination(import_folder, export_folder):
     ----------
     import_folder : str
         The path to folder to import the tables for combination. Must end the path with a 
-        slash.
+        slash. The function assumes there are exactly four csv files all in the import_folder:
+            - 'logistic_grid_search.csv': the csv file for the best logistic regression model
+            - 'decision_tree_grid_search.csv': the csv file for the best decision tree model
+            - 'knn_grid_search.csv': the csv file for the best knn model
+            - 'svc_grid_search.csv': the csv file for the best svc model
     export_folder : str
         The path to folder to export the table as a csv file to. Must end the path with a
-        slash. Recommended to be the same path as import_folder.
+        slash. Recommended to be the same path as import_folder. File name is fixed to be
+        'comparison_df.csv'.
         
     Examples:
     --------

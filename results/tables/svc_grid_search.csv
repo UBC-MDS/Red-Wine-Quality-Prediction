@@ -1,2 +1,2 @@
 model_name,mean_test_score,mean_train_score,mean_fit_time,param_model__C,param_model__gamma,param_model__class_weight
-svc,0.613052530429212,0.7678703611332802,0.2425961971282959,1000,0.01,No Class Weight
+svc,0.613052530429212,0.7678703611332802,0.2233830451965332,1000,0.01,No Class Weight

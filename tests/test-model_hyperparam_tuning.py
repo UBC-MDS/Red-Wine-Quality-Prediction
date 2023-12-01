@@ -144,7 +144,8 @@ svc_df = (pd.DataFrame(svc_grid_search.cv_results_)[
 
 #Outputs using model_hyperparam_tuning
 #Logistic Regression
-lr_func_grid_search = model_hyperparam_tuning(X1, y1, 'logistic', '../results/tables/logistic_grid_search_test.csv')
+lr_func_grid_search = model_hyperparam_tuning(X1, y1, 'logistic', {'C': [0.001, 0.01, 0.1, 1.0, 10, 100, 1000],
+                                                                   'class_weight': ['balanced', None]})
 
 lr_func_df = (pd.DataFrame(lr_func_grid_search.cv_results_)[
     [
@@ -162,7 +163,9 @@ lr_func_df = (pd.DataFrame(lr_func_grid_search.cv_results_)[
 
 #Outputs using model_hyperparam_tuning
 #Decision Tree
-dt_func_grid_search = model_hyperparam_tuning(X1, y1, 'decision_tree', '../results/tables/decision_tree_grid_search_test.csv')
+dt_func_grid_search = model_hyperparam_tuning(X1, y1, 'decision_tree', {'criterion': ['gini', 'entropy'],
+                                                                        'max_depth': 2 ** np.arange(8),
+                                                                        'class_weight': ['balanced', None]})
 
 dt_func_df = (pd.DataFrame(dt_func_grid_search.cv_results_)[
     [
@@ -181,7 +184,7 @@ dt_func_df = (pd.DataFrame(dt_func_grid_search.cv_results_)[
 
 #Outputs using model_hyperparam_tuning
 #k-Nearest Neighbors
-knn_func_grid_search = model_hyperparam_tuning(X1, y1, 'knn', '../results/tables/knn_grid_search_test.csv')
+knn_func_grid_search = model_hyperparam_tuning(X1, y1, 'knn', {'n_neighbors': [1, 2, 3, 4, 5, 6]})
 
 knn_func_df = (pd.DataFrame(knn_func_grid_search.cv_results_)[
     [
@@ -198,7 +201,9 @@ knn_func_df = (pd.DataFrame(knn_func_grid_search.cv_results_)[
 
 #Outputs using model_hyperparam_tuning
 #SVC
-svc_func_grid_search = model_hyperparam_tuning(X1, y1, 'svc', '../results/tables/svc_grid_search_test.csv')
+svc_func_grid_search = model_hyperparam_tuning(X1, y1, 'svc', {'C': [0.001, 0.01, 0.1, 1.0, 10, 100, 1000],
+                                                               'gamma': [0.001, 0.01, 0.1, 1.0, 10, 100, 1000],
+                                                               'class_weight': ['balanced', None]})
 
 svc_func_df = (pd.DataFrame(svc_func_grid_search.cv_results_)[
     [
@@ -225,23 +230,28 @@ def test_model_hyperparam_tuning_returns_correct_best_params():
 #Test for the correct candidates of hyperparameters
 def test_model_hyperparam_tuning_correct_hyperparameters():
     #Logistic Regression
-    assert set(pd.DataFrame(lr_func_grid_search.cv_results_)['param_model__C']) == set([0.001, 0.01, 0.1, 1.0, 10, 100, 1000])
-    assert set(pd.DataFrame(lr_func_grid_search.cv_results_)['param_model__class_weight']) == set(['balanced', None])
+    set(pd.DataFrame(lr_func_grid_search.cv_results_)['param_model__C']) == set([0.001, 0.01, 0.1, 1.0, 10, 100, 1000])
+    set(pd.DataFrame(lr_func_grid_search.cv_results_)['param_model__class_weight']) == set(['balanced', None])
 
     #Decision Tree
-    assert set(pd.DataFrame(dt_func_grid_search.cv_results_)['param_model__criterion']) == set(['gini', 'entropy'])
-    assert set(pd.DataFrame(dt_func_grid_search.cv_results_)['param_model__max_depth']) == set(2 ** np.arange(8))
-    assert set(pd.DataFrame(dt_func_grid_search.cv_results_)['param_model__class_weight']) == set(['balanced', None])
+    set(pd.DataFrame(dt_func_grid_search.cv_results_)['param_model__criterion']) == set(['gini', 'entropy'])
+    set(pd.DataFrame(dt_func_grid_search.cv_results_)['param_model__max_depth']) == set(2 ** np.arange(8))
+    set(pd.DataFrame(dt_func_grid_search.cv_results_)['param_model__class_weight']) == set(['balanced', None])
 
     #k-Nearest Neighbors
-    assert set(pd.DataFrame(knn_func_grid_search.cv_results_)['param_model__n_neighbors']) == set([1, 2, 3, 4, 5, 6])
+    set(pd.DataFrame(knn_func_grid_search.cv_results_)['param_model__n_neighbors']) == set([1, 2, 3, 4, 5, 6])
     
     #SVC
-    assert set(pd.DataFrame(svc_func_grid_search.cv_results_)['param_model__C']) == set([0.001, 0.01, 0.1, 1.0, 10, 100, 1000])
-    assert set(pd.DataFrame(svc_func_grid_search.cv_results_)['param_model__gamma']) == set([0.001, 0.01, 0.1, 1.0, 10, 100, 1000])
-    assert set(pd.DataFrame(svc_func_grid_search.cv_results_)['param_model__class_weight']) == set(['balanced', None])
+    set(pd.DataFrame(svc_func_grid_search.cv_results_)['param_model__C']) == set([0.001, 0.01, 0.1, 1.0, 10, 100, 1000])
+    set(pd.DataFrame(svc_func_grid_search.cv_results_)['param_model__gamma']) == set([0.001, 0.01, 0.1, 1.0, 10, 100, 1000])
+    set(pd.DataFrame(svc_func_grid_search.cv_results_)['param_model__class_weight']) == set(['balanced', None])
 
 #Test for possible values for model names
 def test_model_hyperparam_key_error():
     with pytest.raises(KeyError):
-        model_hyperparam_tuning(X1, y1, 'dne', '../results/tables/dne_grid_search_test.cv')
+        model_hyperparam_tuning(X1, y1, 'test', {'n_neighbors': [1, 2, 3, 4, 5, 6]})
+
+#Test for correct hyperparameter for a model
+def test_model_hyperparam_value_error():
+    with pytest.raises(ValueError):
+        model_hyperparam_tuning(X1, y1, 'knn', {'class_weight': ['balanced', None]})
