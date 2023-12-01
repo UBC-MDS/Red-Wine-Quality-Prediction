@@ -3,6 +3,7 @@ from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.svm import SVC
 import click
+import pickle
 
 @click.command()
 @click.argument('comparison_folder', type=str)
@@ -59,6 +60,9 @@ def test_set_deployment(comparison_folder,
     
     best_pipe = make_pipeline(StandardScaler(), SVC(C=svc_C, gamma=svc_gamma, class_weight=svc_class_weight))
     best_pipe.fit(X_train, y_train)
+
+    with open("../results/models/best_pipe.pickle", 'wb') as f:
+        pickle.dump(best_pipe, f)
     
     performance = pd.DataFrame({'test_set_score': [best_pipe.score(X_test, y_test)]})
     
