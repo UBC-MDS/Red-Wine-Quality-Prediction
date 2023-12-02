@@ -1,6 +1,6 @@
 services:
   Quality-wine-env:
-    image: sungg888/red-wine-quality-prediction:4f5e021
+    image: sungg888/red-wine-quality-prediction:5b3efc5956e8
     ports:
       - "8888:8888"
     volumes:
