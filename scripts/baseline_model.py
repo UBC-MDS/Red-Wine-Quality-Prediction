@@ -51,4 +51,4 @@ if __name__ == "__main__":
     main()
 
 
-#python scripts/baseline_model.py x_train.csv y_train.csv cv_results.csv
+#python scripts/baseline_model.py X_train.csv y_train.csv cv_results.csv
