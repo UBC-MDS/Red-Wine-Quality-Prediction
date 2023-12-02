@@ -38,7 +38,7 @@ def main(model, x_test_path, y_test_path, output_file):
         
     Examples (in cmd line):
     --------
-    >>> python confusion_matrix.py --model=../results/models/best_pipe.pickle --x_test_path=../results/tables/X_test.csv --y_test_path=../results/tables/y_test.csv --output_file=../results/figures/correlation_matrix_plot.png
+    >>> python confusion_matrix.py --model=../results/models/best_pipe.pickle --x_test_path=../results/tables/X_test.csv --y_test_path=../results/tables/y_test.csv --output_file=../results/figures/confusion_matrix_plot.png
     """
     # load the model from the pickle file
     with open(model, 'rb') as model_file:
