@@ -1,41 +1,43 @@
-# function to create a repeating histogram plot to visualize the distribution of 
-# all numeric features
+# Function to plot repeating histograms of all features
 
 # Required imports
 import pandas as pd
+import click
 import altair as alt
+import io
 
-# Plotting function
-def plot_repeating_hists(data_frame, target_col):
+@click.command()
+@click.argument('file_path')
+@click.argument('output_file')
+
+# Define the plotting function
+def main(file_path, output_file):
     """
-    Plots repeated histograms to visualize the distribution of all numeric features in the dataframe. 
+    Plots repeated histograms to visualize the distribution of all numeric features in the dataframe.
 
     Parameters:
     ----------
-    data_frame : pandas.DataFrame
-        The input DataFrame containing the data to plot (containing the target column).
-    target_col : str
-        The name of the target column in the DataFrame (i.e. the column which we are trying to predict).
+    file_path : str
+        The filepath of the csv containing the data.
+    output_file : str
+        The filepath for saving the output correlation matrix as a SVG image.
 
     Returns:
     -------
-    alt.Chart
-        An Altair.Chart class instance. 
+    None
         
     Examples:
     --------
-    >>> import pandas as pd
-    >>> df = pd.read_csv('../data/winequality-red.csv', sep = ';')  # Replace '../data/winequality-red.csv', sep = ';' with your dataset file
-    >>> feature_plot = plot_repeating_hists(data, 'quality')  # Insert target column ex/ quality.
-    >>> feature_plot
+    >>> python plot_repeating_hists.py ../data/winequality-red.csv ../results/repeating_hists_plot.png
     """
-    # Drop the target column prior to plotting 
-    feature_df = data_frame.drop(columns=target_col)
+    # Read the dataset
+    df = pd.read_csv(file_path, delimiter=';')
 
-    # Extract feature names to plot
+    # Drop the 'quality' column
+    feature_df = df.drop('quality', axis=1)
     feature_names = list(feature_df.columns)
-
-    # Plot histograms using altair mark_bar() amd .repeat() to create a histogram for each feature. 
+    
+    # Plot the repeating hists
     feature_hists = alt.Chart(feature_df).mark_bar().encode(
          alt.X(alt.repeat()).type('quantitative').bin(maxbins=40),
          y='count()',
@@ -46,10 +48,14 @@ def plot_repeating_hists(data_frame, target_col):
         feature_names, 
         columns=3
     ).properties(
-        title = "Figure 1: Histograms showing the distrbution of each feature in the red wine dataframe."
+        title="Histograms showing the distrbution of each feature in the red wine dataframe."
     ).configure_title(
         orient='bottom', 
-        anchor = 'middle'
+        anchor='middle'
     )
-    return feature_hists
-    
+
+    # Plotting
+    feature_hists.save(output_file, embed_options={'renderer':'png'})
+
+if __name__ == "__main__":
+    main()

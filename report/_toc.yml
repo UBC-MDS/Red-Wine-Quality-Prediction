@@ -1,0 +1,4 @@
+format: jb-book
+root: red_wine_quality_prediction
+chapters:
+- file: notebooks
