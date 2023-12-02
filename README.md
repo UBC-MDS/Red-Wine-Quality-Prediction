@@ -59,6 +59,36 @@ jupyter lab
 
 3. Under the "Kernel" tab click "Restart Kernel and Run All Cells"
 
+4. To run the analysis, enter the following commands in the terminal in the scripts directory:
+``` bash
+# repeating histograms for each variable in the dataset
+python plot_repeating_hists.py ../data/winequality-red.csv ../results/figures/repeating_hists_plot.png
+
+# Split data into train and test sets
+python data_split.py ../data/winequality-red.csv X_train.csv X_test.csv y_train.csv y_test.csv 0.3 522
+
+# Set dummy classifier as baseline model and return cross-validate results
+python baseline_model.py X_train.csv y_train.csv cv_results.csv
+
+# Model tunning for logistic regression model, decision tree model, KNN model and SVC model, each generate a table
+python model_hyperparam_tuning_wrapper.py ../results/tables/X_train.csv ../results/tables/y_train.csv logistic ../results/tables/
+python model_hyperparam_tuning_wrapper.py ../results/tables/X_train.csv ../results/tables/y_train.csv decision_tree ../results/tables/
+python model_hyperparam_tuning_wrapper.py ../results/tables/X_train.csv ../results/tables/y_train.csv knn ../results/tables/
+python model_hyperparam_tuning_wrapper.py ../results/tables/X_train.csv ../results/tables/y_train.csv svc ../results/tables/
+
+# Combine the four model tunning results into one table
+python model_table_combination.py ../results/tables/ ../results/tables/
+
+# Choose the best performance model: SVC and fit on test data 
+python test_set_deployment.py ../results/tables/ ../results/tables/ ../results/tables/ ../results/tables/ ../results/tables/ ../results/tables/
+
+# Confusion matrix for the best model SVC performance on the test data
+python confusion_matrix.py --model=../results/models/best_pipe.pickle --x_test_path=../results/tables/X_test.csv --y_test_path=../results/tables/y_test.csv --output_file=../results/figures/confusion_matrix_plot.png
+
+# Correlation matrix for all red wine physiochemical features in the data frame
+python correlation_matrix.py ../data/winequality-red.csv ../results/figures/correlation_matrix_plot.png
+```
+
 ## Dependencies
 
 Docker:
