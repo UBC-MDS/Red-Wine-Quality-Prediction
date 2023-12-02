@@ -17,8 +17,10 @@ dependencies:
     - pytest=7.4.3
     - jupyter-book
     - jupyterlab
-    - pip:
-        - mglearn
-        - graphviz
-        - psutil>=5.7.2
-        - click
+    - click
+    - seaborn=0.13.0
+    - pip=23.3.1
+    - notebook=6.5.4
+    - jupyter_contrib_nbextensions=0.7.0
+    - vl-convert-python=1.0.1
+
