@@ -23,8 +23,8 @@ def main(x_train_file, y_train_file, output_file):
     """
     
     # Full path for input and output files
-    input_base_path = 'results/'
-    output_base_path = 'results/tables'
+    input_base_path = '../results/tables'
+    output_base_path = '../results/tables'
     
     # Ensure the /results directory exists
     os.makedirs(output_base_path, exist_ok=True)
@@ -51,4 +51,4 @@ if __name__ == "__main__":
     main()
 
 
-#python scripts/baseline_model.py X_train.csv y_train.csv cv_results.csv
+#python baseline_model.py X_train.csv y_train.csv cv_results.csv
