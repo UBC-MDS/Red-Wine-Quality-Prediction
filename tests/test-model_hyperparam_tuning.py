@@ -255,4 +255,3 @@ def test_model_hyperparam_key_error():
 def test_model_hyperparam_value_error():
     with pytest.raises(ValueError):
         model_hyperparam_tuning(X1, y1, 'knn', {'class_weight': ['balanced', None]})
-
