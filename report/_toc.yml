@@ -1,4 +1,4 @@
 format: jb-book
-root: dsci522-group20
+root: red_wine_quality_prediction
 chapters:
 - file: notebooks
