@@ -1,7 +1,6 @@
 FROM quay.io/jupyter/minimal-notebook:2023-11-19
 
 # Install Conda packages
-# Install Conda packages
 RUN conda install -y python=3.11.6 \
     ipykernel=6.26.0 \
     matplotlib=3.8.2 \
@@ -12,5 +11,7 @@ RUN conda install -y python=3.11.6 \
     pytest=7.4.3 \
     click=8.1.7 \
     vl-convert-python=1.1.0 \
-    seaborn=0.12.0 -c conda-forge 
+    seaborn=0.12.0 \
+    jupyter-book=0.15.1 \
+    notebook=7.0.6 -c conda-forge 
 RUN pip install altair==5.1.2
