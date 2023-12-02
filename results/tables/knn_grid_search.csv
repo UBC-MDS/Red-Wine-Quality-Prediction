@@ -1,2 +1,2 @@
 model_name,mean_test_score,mean_train_score,mean_fit_time,param_model__n_neighbors
-knn,0.5978098975016015,1.0,0.006215381622314453,1
+knn,0.5978098975016015,1.0,0.008022546768188477,1

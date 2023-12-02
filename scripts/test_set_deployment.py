@@ -49,9 +49,9 @@ def test_set_deployment(comparison_folder,
     
     """
     comparison_df = pd.read_csv((comparison_folder + 'comparison_df.csv'), index_col=0)
-    svc_C = comparison_df.loc['svc', 'param_model__C']
-    svc_gamma = comparison_df.loc['svc', 'param_model__gamma']
-    svc_class_weight = None if comparison_df.loc['svc', 'param_model__class_weight'] == 'No Class Weight' else 'balanced'
+    svc_C = comparison_df.loc['svc', 'C']
+    svc_gamma = comparison_df.loc['svc', 'gamma']
+    svc_class_weight = None if comparison_df.loc['svc', 'class_weight'] == 'No Class Weight' else 'balanced'
 
     X_train = pd.read_csv((x_train_folder + 'X_train.csv'))
     y_train = (pd.read_csv((y_train_folder + 'y_train.csv'))).iloc[:, 0]

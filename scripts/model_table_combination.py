@@ -34,6 +34,9 @@ def model_table_combination(import_folder, export_folder):
     svc_df = pd.read_csv((import_folder + 'svc_grid_search.csv'), index_col=0)
 
     comparison_df = pd.concat([lr_df, dt_df, knn_df, svc_df]).sort_values('mean_test_score', ascending=False)
+    comparison_df = comparison_df.rename(columns={'param_model__C': 'C', 'param_model__class_weight': 'class_weight',
+                                                  'param_model__criterion': 'criterion', 'param_model__max_depth': 'max_depth',
+                                                  'param_model__n_neighbors': 'n_neighbors', 'param_model__gamma': 'gamma'})
     comparison_df.to_csv((export_folder + 'comparison_df.csv'), index=True)
 
 if __name__ == '__main__':
