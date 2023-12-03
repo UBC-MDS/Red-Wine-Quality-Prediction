@@ -140,7 +140,9 @@ Save and close the file
 
 11. Push the entire project repository to Github.
 
-12. On your repository page on Github, navigate to `Settings` $\rightarrow$.
+12. On your repository page on Github, navigate to `Settings` $\rightarrow$ `Pages` and under `Build and deployment`, select `Deploy from a branch`. For the two dropdown tables right below it, select `main` and `/docs` for each.
+
+13. Navigate to `Actions` tab in your repository page, and you will see that the Github page is being rendered. Once the operation is done (the yellow dot will turn green), navigate back to `Settings` $\rightarrow$ `Pages` and Github will tell you where your page is live at.
 
 ## Dependencies
 
