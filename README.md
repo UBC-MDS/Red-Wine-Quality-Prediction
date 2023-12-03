@@ -59,7 +59,7 @@ conda activate red_wine_quality_prediction
 (Next few steps are for reproducing the report from scratch. If you do not intend to do this, skip to step 5)
 2. Delete all the files in the 3 subfolders(`figures`, `models`, `tables`) of the `results` folder in the root directory. **DO NOT DELETE THESE THREE SUBFOLDERS.** You can either do it manually, or run the following command (**MAKE SURE YOU ARE CURRENTLY IN THE PROJECT ROOT FOLDER TO PREVENT ACCIDENTALLY DELETING ANYTHING.**)
 ``` bash
-#To check your current directory. Make sure you are in the project root directory.
+# To check your current directory. Make sure you are in the project root directory.
 pwd
 
 yes | rm results/figures/*
@@ -67,18 +67,18 @@ yes | rm results/models/*
 yes | rm results/tables/*
 ```
 
-3. Navigate to the `scripts` folder in the root directory.
+3. Navigate to the `scripts` folder in the root directory in `bash`:
 ``` bash
-#To check your current directory. If you have only been following this instruction, you should be in the correct one.
-#If you are not, navigate to the project root directory.
+# To check your current directory. If you have only been following this instruction, you should be in the correct one.
+# If you are not, navigate to the project root directory.
 pwd
 
 cd scripts
 ```
 
-4. Run the following commands to produce all the outputs for our report from scratch
+4. Run the following commands to produce all the outputs for our report from scratch:
 ``` bash
-# repeating histograms for each variable in the dataset
+# Repeating histograms for each variable in the dataset
 python plot_repeating_hists.py ../data/winequality-red.csv ../results/figures/repeating_hists_plot.png
 
 # Split data into train and test sets
@@ -87,7 +87,8 @@ python data_split.py ../data/winequality-red.csv X_train.csv X_test.csv y_train.
 # Set dummy classifier as baseline model and return cross-validate results
 python baseline_model.py X_train.csv y_train.csv cv_results.csv
 
-# Model tunning for logistic regression model, decision tree model, KNN model and SVC model, each generate a table
+# Model tunning for logistic regression model, decision tree model, KNN model and SVC model.
+#Each generates a table for the details of the best performing one.
 python model_hyperparam_tuning_wrapper.py ../results/tables/X_train.csv ../results/tables/y_train.csv logistic ../results/tables/
 python model_hyperparam_tuning_wrapper.py ../results/tables/X_train.csv ../results/tables/y_train.csv decision_tree ../results/tables/
 python model_hyperparam_tuning_wrapper.py ../results/tables/X_train.csv ../results/tables/y_train.csv knn ../results/tables/
@@ -106,7 +107,40 @@ python confusion_matrix.py --model=../results/models/best_pipe.pickle --x_test_p
 python correlation_matrix.py ../data/winequality-red.csv ../results/figures/correlation_matrix_plot.png
 ```
 
-5.
+5. (Once only) Make sure you are in the `red_wine_quality_prediction` environment and run:
+``` bash
+python -m ipykernel install --user --name conda-env-red_wine_quality_prediction-py
+```
+
+6. Navigate back to the project root directory in `bash`:
+``` bash
+# To check your current directory. If you have only been following this instruction, you should be in the correct one.
+# If you are not, navigate to the `scripts` folder in the root directory.
+pwd
+
+cd ..
+```
+
+7. Build the `jupyter-book`:
+``` bash
+jupyter-book build report
+```
+The full report can now be viewed at the `/report/_build/html/index.html` file.
+
+8. (Only do this and the following steps if you intend on deploying the report as a Github page)
+Create a folder named `docs` (**NO OTHER NAME IS ALLOWED**) in the project root directory
+
+9. Copy *ALL* the files in the `/report/_build/html/` directory to the `docs` folder you just created.
+
+10. Navigate to the `docs` folder you have just created in the root directory, and run the following:
+``` bash
+code .nojekyll
+```
+Save and close the file
+
+11. Push the entire project repository to Github.
+
+12. 
 
 ## Dependencies
 
