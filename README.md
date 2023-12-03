@@ -69,7 +69,8 @@ yes | rm results/tables/*
 
 3. Navigate to the `scripts` folder in the root directory.
 ``` bash
-#To check your current directory. If you have only been following this instruction, you should be in the correct one. If you are not, navigate to the project root directory.
+#To check your current directory. If you have only been following this instruction, you should be in the correct one.
+#If you are not, navigate to the project root directory.
 pwd
 
 cd scripts
