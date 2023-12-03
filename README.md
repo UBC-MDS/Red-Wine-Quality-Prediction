@@ -48,20 +48,16 @@ docker compose up
 ```
 
 2. In the terminal output you will see several URLs. Copy the one which starts with 'http://127.0.0.1:8888' and paste it into your web brower URL panel
-
-3. Open `notebooks/red_wine_quality_prediction_report.ipynb` in Jupyter Lab 
-
-4. Under the "Kernel" tab click "Restart Kernel and Run All Cells"
 (Next few steps are for reproducing the report from scratch.)
 
-6. Once you are in the Jupyter Lab interface when copy the URL 'http://127.0.0.1:8888' and paste it into your web brower URL panel, click on the "terminal" icon. (In work directory as default)
+3. Once you are in the Jupyter Lab interface, click on the "terminal" icon. (In work directory as default)
 
-7. Navigate to project root directory
+4. Navigate to project root directory
 ``` bash
 cd work
 ```
 
-8. Delete all the files in the 3 subfolders(`figures`, `models`, `tables`) of the `results` folder in the root directory. **DO NOT DELETE THESE THREE SUBFOLDERS.** You can either do it manually in your local Git repo for this project, or run the following command (**MAKE SURE YOU ARE CURRENTLY IN THE PROJECT ROOT FOLDER TO PREVENT ACCIDENTALLY DELETING ANYTHING.**)
+5. Delete all the files in the 3 subfolders(`figures`, `models`, `tables`) of the `results` folder in the root directory. **DO NOT DELETE THESE THREE SUBFOLDERS.** You can either do it manually in your local Git repo for this project, or run the following command (**MAKE SURE YOU ARE CURRENTLY IN THE PROJECT ROOT FOLDER TO PREVENT ACCIDENTALLY DELETING ANYTHING.**)
 ``` bash
 # To check your current directory. Make sure you are in the project root directory.
 pwd
@@ -71,12 +67,12 @@ yes | rm results/models/*
 yes | rm results/tables/*
 ```
 
-9. Navigate to the scripts directory
+6. Navigate to the scripts directory
 ``` bash
 cd scripts
 ```
 
-10. Run the following commands to run all scripts to generate corresponding result files in results folder
+7. Run the following commands to run all scripts to generate corresponding result files in results folder
 ``` bash
 # Repeating histograms for each variable in the dataset
 python plot_repeating_hists.py ../data/winequality-red.csv ../results/figures/repeating_hists_plot.png
@@ -106,38 +102,38 @@ python confusion_matrix.py --model=../results/models/best_pipe.pickle --x_test_p
 # Correlation matrix for all red wine physiochemical features in the data frame
 python correlation_matrix.py ../data/winequality-red.csv ../results/figures/correlation_matrix_plot.png
 ```
-11. Navigate back to root of project directory
+8. Navigate back to root of project directory
 ``` bash
 cd ..
 ```
 
-12. Run the following commands to apply kernel for building the jupyter-book:
+9. Run the following commands to apply kernel for building the jupyter-book:
 ``` bash
 python -m ipykernel install --user --name conda-env-red_wine_quality_prediction-py
 ```
 
-13. Build the jupyter-book:
+10. Build the jupyter-book:
 ``` bash
 jupyter-book build report
 ```
 The full report can now be viewed at the `/report/_build/html/index.html` file.
 
-14. (Only do this and the following steps if you intend on deploying the report as a Github page)
+11. (Only do this and the following steps if you intend on deploying the report as a Github page)
 Create a folder named `docs` (**NO OTHER NAME IS ALLOWED**) in the project root directory.
 
-15. Copy **ALL** the files in the `/report/_build/html/` directory to the `docs` folder you just created.
+12. Copy **ALL** the files in the `/report/_build/html/` directory to the `docs` folder you just created.
 
-16. Navigate to the `docs` folder in the root directory in terminal, and run the following:
+13. Navigate to the `docs` folder in the root directory in terminal, and run the following:
 ``` bash
 code .nojekyll
 ```
 Save and close the file.
 
-17. Add, commit, and push the entire project repository to Github.
+14. Add, commit, and push the entire project repository to Github.
 
-18. On your repository page on Github, navigate to `Settings` $\rightarrow$ `Pages` and under `Build and deployment`, select `Deploy from a branch`. For the two dropdown tables right below it, select `main` and `/docs` for each.
+15. On your repository page on Github, navigate to `Settings` $\rightarrow$ `Pages` and under `Build and deployment`, select `Deploy from a branch`. For the two dropdown tables right below it, select `main` and `/docs` for each.
 
-19. Navigate to `Actions` tab in your repository page, and you will see that the Github page is being rendered. Once the operation is done (the yellow dot will turn green), navigate back to `Settings` $\rightarrow$ `Pages` and Github will tell you where your page is live at.
+16. Navigate to `Actions` tab in your repository page, and you will see that the Github page is being rendered. Once the operation is done (the yellow dot will turn green), navigate back to `Settings` $\rightarrow$ `Pages` and Github will tell you where your page is live at.
 
 ### Virtual Environment:
 1. Navigate to the project root directory in `bash` and run:
