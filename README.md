@@ -48,7 +48,6 @@ docker compose up
 ```
 
 2. In the terminal output you will see several URLs. Copy the one which starts with 'http://127.0.0.1:8888' and paste it into your web brower URL panel
-(Next few steps are for reproducing the report from scratch.)
 
 3. Once you are in the Jupyter Lab interface, click on the "terminal" icon. (In work directory as default)
 
@@ -56,6 +55,7 @@ docker compose up
 ``` bash
 cd work
 ```
+(Next few steps are for reproducing the report from scratch. If you do not intend to do this, skip to step 9)
 
 5. Delete all the files in the 3 subfolders(`figures`, `models`, `tables`) of the `results` folder in the root directory. **DO NOT DELETE THESE THREE SUBFOLDERS.** You can either do it manually in your local Git repo for this project, or run the following command (**MAKE SURE YOU ARE CURRENTLY IN THE PROJECT ROOT FOLDER TO PREVENT ACCIDENTALLY DELETING ANYTHING.**)
 ``` bash
