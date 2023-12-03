@@ -344,38 +344,9 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="red-wine-quality-prediction">
 <h1>Red Wine Quality Prediction<a class="headerlink" href="#red-wine-quality-prediction" title="Permalink to this heading">#</a></h1>
 <p>by Nicole Bidwell, Ruocong Sun, Alysen Townsley, Hongyang Zhang</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> 
-<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
-<span class="kn">import</span> <span class="nn">pickle</span>
-</pre></div>
+<div class="cell tag_remove-input docutils container">
 </div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">comparison_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../results/tables/comparison_df.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">wine_quality_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/winequality-red.csv&#39;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s1">&#39;;&#39;</span><span class="p">)</span>
-<span class="n">dummy_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../results/tables/cv_results.csv&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-
-<span class="n">glue</span><span class="p">(</span><span class="s1">&#39;test_set_score&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../results/tables/test_set_score.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;test_set_score&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> 
-     <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">glue</span><span class="p">(</span><span class="s2">&quot;wine_quality_df&quot;</span><span class="p">,</span> <span class="n">wine_quality_df</span><span class="o">.</span><span class="n">head</span><span class="p">(),</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">glue</span><span class="p">(</span><span class="s1">&#39;wine_quality_df_nrows&#39;</span><span class="p">,</span> <span class="n">wine_quality_df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">glue</span><span class="p">(</span><span class="s1">&#39;wine_quality_df_nfeatures&#39;</span><span class="p">,</span> <span class="n">wine_quality_df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">glue</span><span class="p">(</span><span class="s1">&#39;min_wine_quality&#39;</span><span class="p">,</span> <span class="n">wine_quality_df</span><span class="p">[</span><span class="s1">&#39;quality&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">glue</span><span class="p">(</span><span class="s1">&#39;max_wine_quality&#39;</span><span class="p">,</span> <span class="n">wine_quality_df</span><span class="p">[</span><span class="s1">&#39;quality&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">glue</span><span class="p">(</span><span class="s1">&#39;dummy_df&#39;</span><span class="p">,</span> <span class="n">dummy_df</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">glue</span><span class="p">(</span><span class="s1">&#39;dummy_valid_score&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">dummy_df</span><span class="p">[</span><span class="s1">&#39;test_score&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">glue</span><span class="p">(</span><span class="s1">&#39;comparison_df&#39;</span><span class="p">,</span> <span class="n">comparison_df</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">glue</span><span class="p">(</span><span class="s1">&#39;logistic_gs_score&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">comparison_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;logistic&#39;</span><span class="p">,</span> <span class="s1">&#39;mean_test_score&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">glue</span><span class="p">(</span><span class="s1">&#39;decision_tree_gs_score&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">comparison_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;decision_tree&#39;</span><span class="p">,</span> <span class="s1">&#39;mean_test_score&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">glue</span><span class="p">(</span><span class="s1">&#39;knn_gs_score&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">comparison_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;knn&#39;</span><span class="p">,</span> <span class="s1">&#39;mean_test_score&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">glue</span><span class="p">(</span><span class="s1">&#39;svc_gs_score&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">comparison_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;svc&#39;</span><span class="p">,</span> <span class="s1">&#39;mean_test_score&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
+<div class="cell tag_remove-input docutils container">
 </div>
 <section id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h2>
@@ -393,7 +364,7 @@ document.write(`
 <section id="dataset-description">
 <h4>Dataset Description<a class="headerlink" href="#dataset-description" title="Permalink to this heading">#</a></h4>
 <p>The dataset is the “winequality-red.csv” file from the UC Irvine Machine Learning Repository <span id="id8">[<a class="reference internal" href="#id14" title="Paulo Cortez, A. Cerdeira, F. Almeida, T. Matos, and J. Reis. Wine Quality. UCI Machine Learning Repository, 2009. doi:https://doi.org/10.24432/C56S3T.">Cortez <em>et al.</em>, 2009</a>]</span>, which was originally referenced from Decision Support Systems, Elsevier <span id="id9">[<a class="reference internal" href="#id13" title="Paulo Cortez, António Cerdeira, Fernando Almeida, Telmo Matos, and José Reis. Modeling wine preferences by data mining from physicochemical properties. Decision support systems, 47(4):547–553, 2009.">Cortez <em>et al.</em>, 2009</a>]</span>. The dataset contains physiochemical proprties (features) of red vinho verde wine samples from the north of Portugal, along with an associated wine quality score from 0 (worst) to 10 (best).</p>
-<figure class="align-default" id="wine-quality-df" style="width: 400px">
+<figure class="align-left" id="wine-quality-df">
 <div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -514,7 +485,7 @@ document.write(`
 <h4>Visualization<a class="headerlink" href="#visualization" title="Permalink to this heading">#</a></h4>
 <p>We first observe the distribution of the features using their statistical summaries and a histogram. We can see that the majority of features have a skewed distribution, with many containing outliers. Volatile acidity, residual sugar, chlorides, free sulfur dioxide, total sulfur dioxide, and sulphates all have very extreme outliers.</p>
 <figure class="align-default" id="repeating-hists-plot">
-<a class="reference internal image-reference" href="_images/repeating_hists_plot.png"><img alt="_images/repeating_hists_plot.png" src="_images/repeating_hists_plot.png" style="width: 600px;" /></a>
+<a class="reference internal image-reference" href="_images/repeating_hists_plot.png"><img alt="_images/repeating_hists_plot.png" src="_images/repeating_hists_plot.png" style="width: 1000px;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 2 </span><span class="caption-text">Histograms showing the distrbution of each feature in the red wine dataframe.</span><a class="headerlink" href="#repeating-hists-plot" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -594,7 +565,7 @@ document.write(`
 </figcaption>
 </figure>
 <p>As we can see, the baseline obtains an accuracy of around <span class="pasted-text">44.08</span> percent. We now use cross cross validation paired with hyperparameter tuning to identify a model that performs the best.</p>
-<figure class="align-default" id="comparison-df" style="width: 400px">
+<figure class="align-default" id="comparison-df">
 <div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -712,7 +683,7 @@ document.write(`
 <section id="high-correlations">
 <h3>High correlations:<a class="headerlink" href="#high-correlations" title="Permalink to this heading">#</a></h3>
 <figure class="align-default" id="correlation-matrix-plot">
-<a class="reference internal image-reference" href="_images/correlation_matrix_plot.png"><img alt="_images/correlation_matrix_plot.png" src="_images/correlation_matrix_plot.png" style="width: 600px;" /></a>
+<a class="reference internal image-reference" href="_images/correlation_matrix_plot.png"><img alt="_images/correlation_matrix_plot.png" src="_images/correlation_matrix_plot.png" style="width: 1000px;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 6 </span><span class="caption-text">Correlation matrix for all red wine physiochemical features in the dataframe.</span><a class="headerlink" href="#correlation-matrix-plot" title="Permalink to this image">#</a></p>
 </figcaption>
