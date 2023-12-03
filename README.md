@@ -136,7 +136,7 @@ Create a folder named `docs` (**NO OTHER NAME IS ALLOWED**) in the project root 
 ``` bash
 code .nojekyll
 ```
-    Save and close the file
+    Save and close the file.
 
 11. Push the entire project repository to Github.
 
