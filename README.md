@@ -129,7 +129,7 @@ jupyter-book build report
 The full report can now be viewed at the `/report/_build/html/index.html` file.
 
 8. (Only do this and the following steps if you intend on deploying the report as a Github page)
-Create a folder named `docs` (**NO OTHER NAME IS ALLOWED**) in the project root directory
+Create a folder named `docs` (**NO OTHER NAME IS ALLOWED**) in the project root directory.
 
 9. Copy **ALL** the files in the `/report/_build/html/` directory to the `docs` folder you just created.
 
@@ -139,7 +139,7 @@ code .nojekyll
 ```
 Save and close the file.
 
-11. Push the entire project repository to Github.
+11. Add, commit, and push the entire project repository to Github.
 
 12. On your repository page on Github, navigate to `Settings` $\rightarrow$ `Pages` and under `Build and deployment`, select `Deploy from a branch`. For the two dropdown tables right below it, select `main` and `/docs` for each.
 
