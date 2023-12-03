@@ -14,6 +14,15 @@ This project can be run with either Docker (primary option) or a Virtual Environ
 
 ## Set up
 
+### Docker:
+1. Clone the repository.
+``` bash
+git clone https://github.com/UBC-MDS/Red-Wine-Quality-Prediction
+```
+
+2. [Install](https://www.docker.com/get-started/) and launch Docker on your computer.
+
+
 ### Virtual Environment:
 1. Clone the repository.
 ``` bash
@@ -25,13 +34,6 @@ git clone https://github.com/UBC-MDS/Red-Wine-Quality-Prediction
 conda env create --file environment.yaml
 ```
 
-### Docker:
-1. Clone the repository.
-``` bash
-git clone https://github.com/UBC-MDS/Red-Wine-Quality-Prediction
-```
-
-2. [Install](https://www.docker.com/get-started/) and launch Docker on your computer.
 ## Running the Analysis
 
 ### Docker:
