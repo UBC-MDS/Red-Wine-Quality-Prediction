@@ -157,7 +157,7 @@ Virtual Environment:
 
 # License
 
-Distributed under the MIT License. See `LISENCE` for details. 
+Distributed under the MIT License. See `LICENSE` for details. 
 
 # Contributing 
 
