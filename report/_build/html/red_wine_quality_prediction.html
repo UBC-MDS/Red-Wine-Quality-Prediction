@@ -384,6 +384,7 @@ document.write(`
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
 <p>Red wines have a long history that can be traced all the way back to the ancient Greeks. Today, they are more accessible to an average person than ever and the entire industry is estimated to be worth around 109.5 billion USD (The Business Research Company). Despite its ubiquity, most people can barely tell the difference between a good and a bad wine, to the point where we need trained professionals (sommeliers) to understand the difference. In this project, we seek to use machine learning algorithms to predict the quality of the wine based on the physiochemical properties of the liquid.  This model, if effective, could allow manufactures and suppliers to have a more robust understanding of the wine quality based on measurable properties.</p>
+<p>To complete this analysis, visualize data, and build the machine learning model, Python <span id="id1">[<a class="reference internal" href="#id18" title="Guido Van Rossum and Fred L. Drake. Python 3 Reference Manual. CreateSpace, Scotts Valley, CA, 2009. ISBN 1441412697.">Van Rossum and Drake, 2009</a>]</span> and associated libraries, including Pandas <span id="id2">[<a class="reference internal" href="#id19" title="Wes McKinney and others. Data structures for statistical computing in python. In Proceedings of the 9th Python in Science Conference, volume 445, 51–56. Austin, TX, 2010.">McKinney and others, 2010</a>]</span>, NumPy <span id="id3">[<a class="reference internal" href="#id20" title="Charles R Harris, K Jarrod Millman, Stéfan J van der Walt, Ralf Gommers, Pauli Virtanen, David Cournapeau, Eric Wieser, Julian Taylor, Sebastian Berg, Nathaniel J Smith, Robert Kern, Matti Picus, Stephan Hoyer, Marten H van Kerkwijk, Matthew Brett, Allan Haldane, Jaime Fernández del Río, Mark Wiebe, Pearu Peterson, Pierre Gérard-Marchant, Kevin Sheppard, Tyler Reddy, Warren Weckesser, Hameer Abbasi, Christoph Gohlke, and Travis E Oliphant. Array programming with NumPy. Nature, 585(7825):357–362, 2020. URL: https://doi.org/10.1038/s41586-020-2649-2, doi:10.1038/s41586-020-2649-2.">Harris <em>et al.</em>, 2020</a>]</span>, scikit-learn <span id="id4">[<a class="reference internal" href="#id22" title="F. Pedregosa, G. Varoquaux, A. Gramfort, V. Michel, B. Thirion, O. Grisel, M. Blondel, P. Prettenhofer, R. Weiss, V. Dubourg, J. Vanderplas, A. Passos, D. Cournapeau, M. Brucher, M. Perrot, and E. Duchesnay. Scikit-learn: machine learning in Python. Journal of Machine Learning Research, 12:2825–2830, 2011.">Pedregosa <em>et al.</em>, 2011</a>]</span>, Altair <span id="id5">[<a class="reference internal" href="#id21" title="Jacob VanderPlas, Brian Granger, Jeffrey Heer, Dominik Moritz, Kanit Wongsuphasawat, Arvind Satyanarayan, Eitan Lees, Ilia Timofeev, Ben Welsh, and Scott Sievert. Altair: interactive statistical visualizations for python. Journal of open source software, 3(32):1057, 2018.">VanderPlas <em>et al.</em>, 2018</a>]</span>, Seaborn <span id="id6">[<a class="reference internal" href="#id23" title="Michael L. Waskom. Seaborn: statistical data visualization. Journal of Open Source Software, 6(60):3021, 2021. URL: https://doi.org/10.21105/joss.03021, doi:10.21105/joss.03021.">Waskom, 2021</a>]</span>, and Matplotlib <span id="id7">[<a class="reference internal" href="#id24" title="J. D. Hunter. Matplotlib: a 2d graphics environment. Computing in Science &amp; Engineering, 9(3):90–95, 2007. doi:10.1109/MCSE.2007.55.">Hunter, 2007</a>]</span> were used.</p>
 </section>
 <section id="methods-results">
 <h2>Methods &amp; Results<a class="headerlink" href="#methods-results" title="Permalink to this heading">#</a></h2>
@@ -391,7 +392,7 @@ document.write(`
 <h3>EDA<a class="headerlink" href="#eda" title="Permalink to this heading">#</a></h3>
 <section id="dataset-description">
 <h4>Dataset Description<a class="headerlink" href="#dataset-description" title="Permalink to this heading">#</a></h4>
-<p>The dataset is the “winequality-red.csv” file from the <a href=https://archive.ics.uci.edu/dataset/186/wine+quality>UC Irvine Machine Learning Repository</a>, which was originally referenced from <a href=http://www3.dsi.uminho.pt/pcortez/wine/>Decision Support Systems, Elsevier</a>. The dataset contains physiochemical proprties (features) of red vinho verde wine samples from the north of Portugal, along with an associated wine quality score from 0 (worst) to 10 (best).</p>
+<p>The dataset is the “winequality-red.csv” file from the UC Irvine Machine Learning Repository <span id="id8">[<a class="reference internal" href="#id14" title="Paulo Cortez, A. Cerdeira, F. Almeida, T. Matos, and J. Reis. Wine Quality. UCI Machine Learning Repository, 2009. doi:https://doi.org/10.24432/C56S3T.">Cortez <em>et al.</em>, 2009</a>]</span>, which was originally referenced from Decision Support Systems, Elsevier <span id="id9">[<a class="reference internal" href="#id13" title="Paulo Cortez, António Cerdeira, Fernando Almeida, Telmo Matos, and José Reis. Modeling wine preferences by data mining from physicochemical properties. Decision support systems, 47(4):547–553, 2009.">Cortez <em>et al.</em>, 2009</a>]</span>. The dataset contains physiochemical proprties (features) of red vinho verde wine samples from the north of Portugal, along with an associated wine quality score from 0 (worst) to 10 (best).</p>
 <figure class="align-default" id="wine-quality-df" style="width: 400px">
 <div class="output text_html"><div>
 <style scoped>
@@ -720,7 +721,7 @@ document.write(`
 </section>
 <section id="potential-interactions">
 <h3>Potential Interactions:<a class="headerlink" href="#potential-interactions" title="Permalink to this heading">#</a></h3>
-<p>In our logistic regression model we did not take any of the potential interaction into the account. With this many qualities it is possible that some of the features affect the effect of others.</p>
+<p>In our logistic regression model we did not take any of the potential interaction into the account. With this many qualities it is possible that some of the features affect the effect of others <span id="id10">[<a class="reference internal" href="#id16" title="R. Pramoditha. How do you apply PCA to Logistic Regression to remove Multicollinearity? PCA in action to remove multicollinearity. 2021. URL: https://towardsdatascience.com/how-do-you-apply-pca-to-logistic-regression-to-remove-multicollinearity-10b7f8e89f9b#:~:text=PCA%20(Principal%20Component%20Analysis)%20takes,effectively%20eliminate%20multicollinearity%20between%20features.">Pramoditha, 2021</a>]</span> <span id="id11">[<a class="reference internal" href="#id17" title="Statistical Methods UCLA: Andvanced Research Computing and Data Analytics. Deciphering Interactions in Logistic Regression. 2021. URL: https://stats.oarc.ucla.edu/stata/seminars/deciphering-interactions-in-logistic-regression/#:~:text=Logistic%20interactions%20are%20a%20complex%20concept&amp;text=But%20in%20logistic%20regression%20interaction,can%20make%20a%20big%20difference.">UCLA: Andvanced Research Computing and Analytics, 2021</a>]</span>.</p>
 </section>
 <section id="problem-formulation">
 <h3>Problem Formulation:<a class="headerlink" href="#problem-formulation" title="Permalink to this heading">#</a></h3>
@@ -733,7 +734,44 @@ document.write(`
 </section>
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
-<span class="target" id="id1"></span></section>
+<div class="docutils container" id="id12">
+<dl class="citation">
+<dt class="label" id="id14"><span class="brackets"><a class="fn-backref" href="#id8">CCA+09a</a></span></dt>
+<dd><p>Paulo Cortez, A. Cerdeira, F. Almeida, T. Matos, and J. Reis. Wine Quality. UCI Machine Learning Repository, 2009. <a class="reference external" href="https://doi.org/https://doi.org/10.24432/C56S3T">doi:https://doi.org/10.24432/C56S3T</a>.</p>
+</dd>
+<dt class="label" id="id13"><span class="brackets"><a class="fn-backref" href="#id9">CCA+09b</a></span></dt>
+<dd><p>Paulo Cortez, António Cerdeira, Fernando Almeida, Telmo Matos, and José Reis. Modeling wine preferences by data mining from physicochemical properties. <em>Decision support systems</em>, 47(4):547–553, 2009.</p>
+</dd>
+<dt class="label" id="id20"><span class="brackets"><a class="fn-backref" href="#id3">HMvdW+20</a></span></dt>
+<dd><p>Charles R Harris, K Jarrod Millman, Stéfan J van der Walt, Ralf Gommers, Pauli Virtanen, David Cournapeau, Eric Wieser, Julian Taylor, Sebastian Berg, Nathaniel J Smith, Robert Kern, Matti Picus, Stephan Hoyer, Marten H van Kerkwijk, Matthew Brett, Allan Haldane, Jaime Fernández del Río, Mark Wiebe, Pearu Peterson, Pierre Gérard-Marchant, Kevin Sheppard, Tyler Reddy, Warren Weckesser, Hameer Abbasi, Christoph Gohlke, and Travis E Oliphant. Array programming with NumPy. <em>Nature</em>, 585(7825):357–362, 2020. URL: <a class="reference external" href="https://doi.org/10.1038/s41586-020-2649-2">https://doi.org/10.1038/s41586-020-2649-2</a>, <a class="reference external" href="https://doi.org/10.1038/s41586-020-2649-2">doi:10.1038/s41586-020-2649-2</a>.</p>
+</dd>
+<dt class="label" id="id24"><span class="brackets"><a class="fn-backref" href="#id7">Hun07</a></span></dt>
+<dd><p>J. D. Hunter. Matplotlib: a 2d graphics environment. <em>Computing in Science &amp; Engineering</em>, 9(3):90–95, 2007. <a class="reference external" href="https://doi.org/10.1109/MCSE.2007.55">doi:10.1109/MCSE.2007.55</a>.</p>
+</dd>
+<dt class="label" id="id19"><span class="brackets"><a class="fn-backref" href="#id2">M+10</a></span></dt>
+<dd><p>Wes McKinney and others. Data structures for statistical computing in python. In <em>Proceedings of the 9th Python in Science Conference</em>, volume 445, 51–56. Austin, TX, 2010.</p>
+</dd>
+<dt class="label" id="id22"><span class="brackets"><a class="fn-backref" href="#id4">PVG+11</a></span></dt>
+<dd><p>F. Pedregosa, G. Varoquaux, A. Gramfort, V. Michel, B. Thirion, O. Grisel, M. Blondel, P. Prettenhofer, R. Weiss, V. Dubourg, J. Vanderplas, A. Passos, D. Cournapeau, M. Brucher, M. Perrot, and E. Duchesnay. Scikit-learn: machine learning in Python. <em>Journal of Machine Learning Research</em>, 12:2825–2830, 2011.</p>
+</dd>
+<dt class="label" id="id16"><span class="brackets"><a class="fn-backref" href="#id10">Pra21</a></span></dt>
+<dd><p>R. Pramoditha. How do you apply PCA to Logistic Regression to remove Multicollinearity? PCA in action to remove multicollinearity. 2021. URL: <a class="reference external" href="https://towardsdatascience.com/how-do-you-apply-pca-to-logistic-regression-to-remove-multicollinearity-10b7f8e89f9b#:~:text=PCA%20(Principal%20Component%20Analysis)%20takes,effectively%20eliminate%20multicollinearity%20between%20features">https://towardsdatascience.com/how-do-you-apply-pca-to-logistic-regression-to-remove-multicollinearity-10b7f8e89f9b#:~:text=PCA%20(Principal%20Component%20Analysis)%20takes,effectively%20eliminate%20multicollinearity%20between%20features</a>.</p>
+</dd>
+<dt class="label" id="id17"><span class="brackets"><a class="fn-backref" href="#id11">UCLAARCA21</a></span></dt>
+<dd><p>Statistical Methods UCLA: Andvanced Research Computing and Data Analytics. Deciphering Interactions in Logistic Regression. 2021. URL: <a class="reference external" href="https://stats.oarc.ucla.edu/stata/seminars/deciphering-interactions-in-logistic-regression/#:~:text=Logistic%20interactions%20are%20a%20complex%20concept&amp;text=But%20in%20logistic%20regression%20interaction,can%20make%20a%20big%20difference">https://stats.oarc.ucla.edu/stata/seminars/deciphering-interactions-in-logistic-regression/#:~:text=Logistic%20interactions%20are%20a%20complex%20concept&amp;text=But%20in%20logistic%20regression%20interaction,can%20make%20a%20big%20difference</a>.</p>
+</dd>
+<dt class="label" id="id18"><span class="brackets"><a class="fn-backref" href="#id1">VRD09</a></span></dt>
+<dd><p>Guido Van Rossum and Fred L. Drake. <em>Python 3 Reference Manual</em>. CreateSpace, Scotts Valley, CA, 2009. ISBN 1441412697.</p>
+</dd>
+<dt class="label" id="id21"><span class="brackets"><a class="fn-backref" href="#id5">VGH+18</a></span></dt>
+<dd><p>Jacob VanderPlas, Brian Granger, Jeffrey Heer, Dominik Moritz, Kanit Wongsuphasawat, Arvind Satyanarayan, Eitan Lees, Ilia Timofeev, Ben Welsh, and Scott Sievert. Altair: interactive statistical visualizations for python. <em>Journal of open source software</em>, 3(32):1057, 2018.</p>
+</dd>
+<dt class="label" id="id23"><span class="brackets"><a class="fn-backref" href="#id6">Was21</a></span></dt>
+<dd><p>Michael L. Waskom. Seaborn: statistical data visualization. <em>Journal of Open Source Software</em>, 6(60):3021, 2021. URL: <a class="reference external" href="https://doi.org/10.21105/joss.03021">https://doi.org/10.21105/joss.03021</a>, <a class="reference external" href="https://doi.org/10.21105/joss.03021">doi:10.21105/joss.03021</a>.</p>
+</dd>
+</dl>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
