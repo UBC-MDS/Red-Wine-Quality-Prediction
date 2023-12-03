@@ -51,17 +51,21 @@ docker compose up
 
 
 ### Virtual Environment:
-1. Open the analysis in Jupyter lab. In the root of the repository run:
+1. Navigate to the project root directory in `bash` and run:
 ``` bash
 conda activate red_wine_quality_prediction
-jupyter lab
 ```
 
-2. Open `notebooks/red_wine_quality_prediction_report.ipynb` in Jupyter Lab 
+(Next few steps are for reproducing the report from scratch. If you do not intend to do this, skip to step 5)
+2. Delete all the files in the 3 subfolders(`figures`, `models`, `tables`) of the `results` folder in the root directory. **DO NOT DELETE THESE THREE SUBFOLDERS.** You can either do it manually, or run the following command (**MAKE SURE YOU ARE CURRENTLY IN THE PROJECT ROOT FOLDER TO PREVENT ACCIDENTALLY DELETING ANYTHING.**)
 
-3. Under the "Kernel" tab click "Restart Kernel and Run All Cells"
+3. Change your directory to the `scripts` folder in root:
+``` bash
+cd scripts
+```
+If you changed your
 
-4. To run the analysis, enter the following commands in the terminal in the scripts directory:
+4. Run the following commands to produce all the outputs for our report from scratch
 ``` bash
 # repeating histograms for each variable in the dataset
 python plot_repeating_hists.py ../data/winequality-red.csv ../results/figures/repeating_hists_plot.png
@@ -90,6 +94,8 @@ python confusion_matrix.py --model=../results/models/best_pipe.pickle --x_test_p
 # Correlation matrix for all red wine physiochemical features in the data frame
 python correlation_matrix.py ../data/winequality-red.csv ../results/figures/correlation_matrix_plot.png
 ```
+
+5.
 
 ## Dependencies
 
