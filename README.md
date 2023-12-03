@@ -58,12 +58,22 @@ conda activate red_wine_quality_prediction
 
 (Next few steps are for reproducing the report from scratch. If you do not intend to do this, skip to step 5)
 2. Delete all the files in the 3 subfolders(`figures`, `models`, `tables`) of the `results` folder in the root directory. **DO NOT DELETE THESE THREE SUBFOLDERS.** You can either do it manually, or run the following command (**MAKE SURE YOU ARE CURRENTLY IN THE PROJECT ROOT FOLDER TO PREVENT ACCIDENTALLY DELETING ANYTHING.**)
-
-3. Change your directory to the `scripts` folder in root:
 ``` bash
+#To check your current directory
+pwd
+
+yes | rm results/figures/*
+yes | rm results/models/*
+yes | rm results/tables/*
+```
+
+3. Navigate to the `scripts` folder in the root directory.
+``` bash
+#To check your current directory. If you have only been following this instruction, you should be in the correct one. If you are not, navigate to the project root directory.
+pwd
+
 cd scripts
 ```
-If you changed your
 
 4. Run the following commands to produce all the outputs for our report from scratch
 ``` bash
