@@ -41,7 +41,10 @@ def model_hyperparam_tuning(X, y, model, params):
     >>> result.cv_results_
     
     """
-
+    # check if URL exists, if not raise an error
+    if model not in ['logistic', 'decision_tree', 'knn', 'svc']:
+        raise KeyError('Select a valid model from: "logistic", "decision_tree", "knn", "svc".')
+    
     models = {'logistic': LogisticRegression(random_state=522),
               'decision_tree': DecisionTreeClassifier(random_state=522),
               'knn': KNeighborsClassifier(),
@@ -52,6 +55,8 @@ def model_hyperparam_tuning(X, y, model, params):
 
     param_dict = {}
     for param in params:
+        if not hasattr(models[model], param):
+            raise ValueError('This model does not contain one of the hyperparameters provided.')
         param_dict['model__' + param] = params[param]
 
     grid_search = GridSearchCV(estimator=pipe, param_grid=[param_dict], n_jobs=-1, return_train_score=True)

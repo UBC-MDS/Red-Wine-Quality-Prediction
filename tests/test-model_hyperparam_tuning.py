@@ -248,10 +248,10 @@ def test_model_hyperparam_tuning_correct_hyperparameters():
 
 #Test for possible values for model names
 def test_model_hyperparam_key_error():
-    with pytest.raises(KeyError):
+    with pytest.raises(KeyError, match='Select a valid model from: "logistic", "decision_tree", "knn", "svc".'):
         model_hyperparam_tuning(X1, y1, 'test', {'n_neighbors': [1, 2, 3, 4, 5, 6]})
 
 #Test for correct hyperparameter for a model
 def test_model_hyperparam_value_error():
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match='This model does not contain one of the hyperparameters provided.'):
         model_hyperparam_tuning(X1, y1, 'knn', {'class_weight': ['balanced', None]})
