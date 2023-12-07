@@ -51,4 +51,3 @@ if __name__ == "__main__":
     main()
 
 
-# python data_split.py ../data/winequality-red.csv X_train.csv X_test.csv y_train.csv y_test.csv 0.3 522
