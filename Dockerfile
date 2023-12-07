@@ -13,5 +13,6 @@ RUN conda install -y python=3.11.6 \
     vl-convert-python=1.1.0 \
     seaborn=0.12.0 \
     jupyter-book=0.15.1 \
-    notebook=7.0.6 -c conda-forge 
+    notebook=7.0.6 -c conda-forge \
+    make
 RUN pip install altair==5.1.2
