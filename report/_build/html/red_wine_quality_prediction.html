@@ -312,6 +312,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods-results">Methods &amp; Results</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eda">EDA</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-description">Dataset Description</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#columns">Columns</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization">Visualization</a></li>
 </ul>
 </li>
@@ -481,6 +482,23 @@ document.write(`
 </figure>
 <p>There are <span class="pasted-text">11</span> feature columns representing physiochemical characteristics of the wines, such as fixed acidity, residual sugar, chlorides, density, etc. There are <span class="pasted-text">1599</span> rows or observations in the dataset, with no missing values. The target is the quality column which is listed as a set of ordinal values from <span class="pasted-text">3</span> to <span class="pasted-text">8</span>, although they could go as low as 0 or as high as 10 (this data set does not contain observations across the entire range). Most observations have an “average” quality of 5 or 6, with fewer below a score of 5 or above a score of 6.</p>
 </section>
+<section id="columns">
+<h4>Columns<a class="headerlink" href="#columns" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">fixed</span> <span class="pre">acidity</span></code>: grams of tartaric acid per cubic decimeter.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">volatile</span> <span class="pre">acidity</span></code>: grams of acetic acid per cubic decimeter.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">citric</span> <span class="pre">acid</span></code>: grams of citric acid per cubic decimeter.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">residual</span> <span class="pre">sugar</span></code>: grams of residual sugar per cubic decimeter.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">chlorides</span></code>: grams of sodium chloride per cubic decimeter.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">free</span> <span class="pre">sulfur</span> <span class="pre">dioxide</span></code>: grams of unreacted sulfur dioxide per cubic decimeter.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">total</span> <span class="pre">sulfur</span> <span class="pre">dioxide</span></code>: grams of total sulfur dioxide per cubic decimeter.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">density</span></code>: density of the wine in grams per cubic decimeter.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pH</span></code>: pH value of the wine</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sulphates</span></code>: gra</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">alcohol</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">quality</span></code></p></li>
+</ul>
+</section>
 <section id="visualization">
 <h4>Visualization<a class="headerlink" href="#visualization" title="Permalink to this heading">#</a></h4>
 <p>We first observe the distribution of the features using their statistical summaries and a histogram. We can see that the majority of features have a skewed distribution, with many containing outliers. Volatile acidity, residual sugar, chlorides, free sulfur dioxide, total sulfur dioxide, and sulphates all have very extreme outliers.</p>
@@ -525,36 +543,36 @@ document.write(`
   <tbody>
     <tr>
       <th>0</th>
+      <td>0.000</td>
       <td>0.001</td>
-      <td>0.0</td>
       <td>0.442</td>
       <td>0.440</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.002</td>
-      <td>0.0</td>
+      <td>0.000</td>
+      <td>0.001</td>
       <td>0.438</td>
       <td>0.441</td>
     </tr>
     <tr>
       <th>2</th>
       <td>0.001</td>
-      <td>0.0</td>
+      <td>0.000</td>
       <td>0.438</td>
       <td>0.441</td>
     </tr>
     <tr>
       <th>3</th>
       <td>0.001</td>
-      <td>0.0</td>
+      <td>0.000</td>
       <td>0.442</td>
       <td>0.440</td>
     </tr>
     <tr>
       <th>4</th>
       <td>0.001</td>
-      <td>0.0</td>
+      <td>0.000</td>
       <td>0.444</td>
       <td>0.440</td>
     </tr>
@@ -612,7 +630,7 @@ document.write(`
       <th>svc</th>
       <td>0.613</td>
       <td>0.768</td>
-      <td>0.229</td>
+      <td>0.221</td>
       <td>1000.0</td>
       <td>No Class Weight</td>
       <td>NaN</td>
@@ -624,7 +642,7 @@ document.write(`
       <th>knn</th>
       <td>0.598</td>
       <td>1.000</td>
-      <td>0.009</td>
+      <td>0.011</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -636,7 +654,7 @@ document.write(`
       <th>decision_tree</th>
       <td>0.593</td>
       <td>0.994</td>
-      <td>0.017</td>
+      <td>0.016</td>
       <td>NaN</td>
       <td>No Class Weight</td>
       <td>gini</td>
@@ -648,7 +666,7 @@ document.write(`
       <th>logistic</th>
       <td>0.586</td>
       <td>0.592</td>
-      <td>0.034</td>
+      <td>0.030</td>
       <td>0.1</td>
       <td>No Class Weight</td>
       <td>NaN</td>
@@ -795,6 +813,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods-results">Methods &amp; Results</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eda">EDA</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-description">Dataset Description</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#columns">Columns</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization">Visualization</a></li>
 </ul>
 </li>

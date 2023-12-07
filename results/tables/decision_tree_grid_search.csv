@@ -1,2 +1,2 @@
 model_name,mean_test_score,mean_train_score,mean_fit_time,param_model__criterion,param_model__max_depth,param_model__class_weight
-decision_tree,0.5933496156310057,0.9937432661612131,0.015190362930297852,gini,16,No Class Weight
+decision_tree,0.5933496156310057,0.9937432661612131,0.016111040115356447,gini,16,No Class Weight
