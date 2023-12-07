@@ -241,7 +241,6 @@ Virtual Environment:
 - Python and packages listed in [`environment.yaml`](environment.yaml)
 
 # License
-https://github.com/
 The source code files are distributed under the MIT License. The report files are distributed under the Creative Commons Zero v1.0 Universal License. See `LICENSE.txt` for details. 
 
 # Contributing 
