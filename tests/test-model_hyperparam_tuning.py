@@ -10,7 +10,7 @@ import sys
 import os
 
 sys.path.append('..')
-from src.model_hyperparam_tuning import model_hyperparam_tuning
+from scripts.model_hyperparam_tuning import model_hyperparam_tuning
 
 from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
