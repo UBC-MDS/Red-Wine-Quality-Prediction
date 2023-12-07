@@ -18,7 +18,7 @@ results/tables/X_train.csv results/tables/X_test.csv results/tables/y_train.csv 
 		y_train.csv \
 		y_test.csv \
 		0.3 \
-		522s
+		522
 
 # Set dummy classifier as baseline model and return cross-validate results
 results/tables/cv_results.csv: scripts/baseline_model.py results/tables/X_train.csv results/tables/y_train.csv
