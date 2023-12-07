@@ -28,7 +28,7 @@ def main(file_path, output_file):
         
     Examples:
     --------
-    >>> python plot_repeating_hists.py ../data/winequality-red.csv ../results/figures/repeating_hists_plot.png
+    >>> python scripts/plot_repeating_hists.py data/winequality-red.csv results/figures/repeating_hists_plot.png
     """
     # Read the dataset
     df = pd.read_csv(file_path, delimiter=';')
