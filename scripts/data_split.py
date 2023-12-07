@@ -42,10 +42,10 @@ def main(input_file, output_x_train, output_x_test, output_y_train, output_y_tes
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=test_size, random_state=random_state)
 
     # Save to CSV files in the results directory
-    X_train.to_csv(f'../results/tables/{output_x_train}', index=False)
-    X_test.to_csv(f'../results/tables/{output_x_test}', index=False)
-    y_train.to_csv(f'../results/tables/{output_y_train}', index=False)
-    y_test.to_csv(f'../results/tables/{output_y_test}', index=False)
+    X_train.to_csv(f'results/tables/{output_x_train}', index=False)
+    X_test.to_csv(f'results/tables/{output_x_test}', index=False)
+    y_train.to_csv(f'results/tables/{output_y_train}', index=False)
+    y_test.to_csv(f'results/tables/{output_y_test}', index=False)
 
 if __name__ == "__main__":
     main()
