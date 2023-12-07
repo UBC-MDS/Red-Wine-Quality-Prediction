@@ -29,7 +29,7 @@ def main(file_path, output_file):
         
     Examples:
     --------
-    >>> python correlation_matrix.py ../data/winequality-red.csv ../results/figures/correlation_matrix_plot.png
+    >>> python scripts/correlation_matrix.py data/winequality-red.csv results/figures/correlation_matrix_plot.png
     """
     # Read the dataset
     df = pd.read_csv(file_path, delimiter=';')
