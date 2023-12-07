@@ -55,7 +55,7 @@ def test_set_deployment(comparison_folder,
 
     X_train = pd.read_csv((x_train_folder + 'X_train.csv'))
     y_train = (pd.read_csv((y_train_folder + 'y_train.csv'))).iloc[:, 0]
-    X_test = pd.read_csv((x_test_folder + 'x_test.csv'))
+    X_test = pd.read_csv((x_test_folder + 'X_test.csv'))
     y_test = (pd.read_csv((y_test_folder + 'y_test.csv'))).iloc[:, 0]
     
     best_pipe = make_pipeline(StandardScaler(), SVC(C=svc_C, gamma=svc_gamma, class_weight=svc_class_weight))
