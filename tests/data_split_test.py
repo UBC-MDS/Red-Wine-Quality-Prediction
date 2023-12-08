@@ -10,7 +10,7 @@ import sys
 import os
 
 sys.path.append('..')
-from src.data_split_test import splitfunction
+from scripts.data_split_test import splitfunction
 
 from sklearn.model_selection import (
     GridSearchCV,
