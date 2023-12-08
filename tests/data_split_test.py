@@ -55,5 +55,4 @@ def teardown_module(module):
     if os.path.exists('results'):
         os.rmdir('results')
 
-if __name__ == '__main__':
-    pytest.main()
+
