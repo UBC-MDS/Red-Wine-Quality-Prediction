@@ -28,6 +28,15 @@ def main(input_file, output_x_train, output_x_test, output_y_train, output_y_tes
     performs a train-test split, and then saves the resulting splits into CSV files within
     the 'results/' directory. The filenames are provided as arguments.
     """
+
+    # Test if the input file exists
+    if not os.path.isfile(input_file):
+        raise FileNotFoundError(f"The file specified does not exist: {input_file}")
+
+    # Test if the test_size is within the valid range
+    if not 0 < test_size < 1:
+        raise ValueError("test_size must be a float between 0 and 1.")
+
     # Ensure the results directory exists
     os.makedirs('results', exist_ok=True)
 
