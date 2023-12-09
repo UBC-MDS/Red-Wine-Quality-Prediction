@@ -1,4 +1,4 @@
-# Changelog
+# CHANGELOG
 
 This change log serves as a record of our project's evolution with focused placed on the changes made in response to feedback received during Milestone 1, Milestone 2, and the peer-review process.
 
@@ -13,7 +13,7 @@ This change log serves as a record of our project's evolution with focused place
 |               | Other: move all scripts to `scripts` (no `src`).                                                   | Done to enhance the organization of our repository                                                                                                                                                      |        [link](https://github.com/UBC-MDS/Red-Wine-Quality-Prediction/commit/388d6e6db799e4903fa7ba7cff188840ba9ffc06)   |  
 | Reviewer 3    | Tests: typo in `test_set_deployment.py`.                                                            | Fixed.                                                                                                                                                                                              |        [link](https://github.com/UBC-MDS/Red-Wine-Quality-Prediction/commit/1fa87ff247008832ac57442a24debd567c0ec56b )     |
 |               | Other: try out log transformation to some features with pronounced skew.                            | Due to time restraints, this is not feasible for Milestone 4 but it is a useful idea and can be included in future work.                                                                            |   n/a          |
-| Reviewer 4    | Community Guideline: `contributing.md` mentioned in `readme` but file doesn't exist.               | `CONTRIBUTING.md` added.                                                                                                                                                                           |      [link](https://github.com/UBC-MDS/Red-Wine-Quality-Prediction/commit/b5e63f0bffb1ce0b101acd98124047f145bc3be9)       |
+| Reviewer 4    | Community Guideline: `CONTRIBUTING.md` mentioned in `README.md` but file doesn't exist.               | `CONTRIBUTING.md` added.                                                                                                                                                                           |      [link](https://github.com/UBC-MDS/Red-Wine-Quality-Prediction/commit/b5e63f0bffb1ce0b101acd98124047f145bc3be9)       |
 |               | Tests: tests available for some scripts but not all.                                                | Due to time constraints, cannot create new tests for the scripts from Milestone 3, but ensured previous tests are working and included error handling to make them more robust.                   |     *previously linked*        |
 |               | Other: some scripts take positional arguments and some do not.                                      | This is okay for Milestone 4. But it's a good practice for consitency in scripts in future work.                                                                                                                                    |     n/a        |
 
@@ -41,5 +41,5 @@ This change log serves as a record of our project's evolution with focused place
 | Category       | Description                                              | Commit Link |
 |----------------|----------------------------------------------------------|-------------|
 | README.md      | Readme updates, including usage instructions with Makefile. |     [link](https://github.com/UBC-MDS/Red-Wine-Quality-Prediction/commit/934f5dac55a5b5456fcc07270685bf200b1f8995)        |
-| Organization   | Cleaned up test folder, by removing old unused files for organization and clarity. |     [link 1](https://github.com/UBC-MDS/Red-Wine-Quality-Prediction/commit/3482d28ae770f6586f38190f650b13f9aaec3479), [link 2](https://github.com/UBC-MDS/Red-Wine-Quality-Prediction/commit/a0997a3501e2ffeac65b0e06aa89c88ec4cbfd44)        |
+| Organization   | Cleaned up test folder by removing unused files for organization and clarity. |     [link 1](https://github.com/UBC-MDS/Red-Wine-Quality-Prediction/commit/3482d28ae770f6586f38190f650b13f9aaec3479), [link 2](https://github.com/UBC-MDS/Red-Wine-Quality-Prediction/commit/a0997a3501e2ffeac65b0e06aa89c88ec4cbfd44)        |
 
