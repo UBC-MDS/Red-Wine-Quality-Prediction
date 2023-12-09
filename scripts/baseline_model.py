@@ -21,6 +21,12 @@ def main(x_train_file, y_train_file, output_file):
     y_train_file (str): Filename for the training labels CSV file located in '/results'.
     output_file (str): Filename for saving the cross-validation results CSV in '/results'.
     """
+    # Test if the file names provided are not empty strings
+    if not x_train_file.strip():
+        raise ValueError("The x_train_file argument is empty. Please provide a valid file name.")
+    
+    if not y_train_file.strip():
+        raise ValueError("The y_train_file argument is empty. Please provide a valid file name.")
     
     # Full path for input and output files
     input_base_path = 'results/tables'
