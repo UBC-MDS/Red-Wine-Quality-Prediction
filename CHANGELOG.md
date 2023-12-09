@@ -40,6 +40,6 @@ This change log serves as a record of our project's evolution with focused place
 
 | Category       | Description                                              | Commit Link |
 |----------------|----------------------------------------------------------|-------------|
-| README.md      | Readme updates, including usage instructions with Makefile. |     [link](https://github.com/UBC-MDS/Red-Wine-Quality-Prediction/commit/934f5dac55a5b5456fcc07270685bf200b1f8995)        |
+| README.md      | Readme updates, including usage instructions with Makefile. |     [link 1](https://github.com/UBC-MDS/Red-Wine-Quality-Prediction/commit/934f5dac55a5b5456fcc07270685bf200b1f8995) , [link 2](https://github.com/UBC-MDS/Red-Wine-Quality-Prediction/commit/7beda8fbcf8a4c7e1dcb756a8e14cd8c8b6df695)       |
 | Organization   | Cleaned up test folder by removing unused files for organization and clarity. |     [link 1](https://github.com/UBC-MDS/Red-Wine-Quality-Prediction/commit/3482d28ae770f6586f38190f650b13f9aaec3479), [link 2](https://github.com/UBC-MDS/Red-Wine-Quality-Prediction/commit/a0997a3501e2ffeac65b0e06aa89c88ec4cbfd44)        |
 
