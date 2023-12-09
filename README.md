@@ -163,7 +163,7 @@ To reset the repo to a clean state, with no results files, run the following com
 make clean
 ```
 
-#### Virtual Environment Approach 1
+#### Virtual Environment Approach 2
 
 1. Navigate to the project root directory in `bash` and run:
 ``` bash
