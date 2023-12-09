@@ -29,13 +29,6 @@ def main(x_train_file, y_train_file, output_file):
     # Ensure the /results directory exists
     os.makedirs(output_base_path, exist_ok=True)
 
-    # Test if the input files exist
-    if not os.path.exists(full_x_train_path):
-        raise FileNotFoundError(f"The training features file {full_x_train_path} does not exist.")
-        
-    if not os.path.exists(full_y_train_path):
-        raise FileNotFoundError(f"The training labels file {full_y_train_path} does not exist.")
-    
     # Construct full paths for input files
     full_x_train_path = os.path.join(input_base_path, x_train_file)
     full_y_train_path = os.path.join(input_base_path, y_train_file)
