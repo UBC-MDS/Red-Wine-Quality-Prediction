@@ -80,73 +80,64 @@ yes | rm results/models/*
 yes | rm results/tables/*
 ```
 
-6. Navigate to the scripts directory
-``` bash
-cd scripts
-```
-
-7. Run the following commands to run all scripts to generate corresponding result files in results folder
+6. Run the following commands to run all scripts to generate corresponding result files in results folder
 ``` bash
 # Repeating histograms for each variable in the dataset
-python plot_repeating_hists.py ../data/winequality-red.csv ../results/figures/repeating_hists_plot.png
+python scripts/plot_repeating_hists.py data/winequality-red.csv results/figures/repeating_hists_plot.png
 
 # Split data into train and test sets
-python data_split.py ../data/winequality-red.csv X_train.csv X_test.csv y_train.csv y_test.csv 0.3 522
+python scripts/data_split.py data/winequality-red.csv X_train.csv X_test.csv y_train.csv y_test.csv 0.3 522
 
 # Set dummy classifier as baseline model and return cross-validate results
-python baseline_model.py X_train.csv y_train.csv cv_results.csv
+python scripts/baseline_model.py X_train.csv y_train.csv cv_results.csv
 
 # Model tunning for logistic regression model, decision tree model, KNN model and SVC model.
 #Each generates a table for the details of the best performing one.
-python model_hyperparam_tuning_wrapper.py ../results/tables/X_train.csv ../results/tables/y_train.csv logistic ../results/tables/
-python model_hyperparam_tuning_wrapper.py ../results/tables/X_train.csv ../results/tables/y_train.csv decision_tree ../results/tables/
-python model_hyperparam_tuning_wrapper.py ../results/tables/X_train.csv ../results/tables/y_train.csv knn ../results/tables/
-python model_hyperparam_tuning_wrapper.py ../results/tables/X_train.csv ../results/tables/y_train.csv svc ../results/tables/
+python scripts/model_hyperparam_tuning_wrapper.py results/tables/X_train.csv results/tables/y_train.csv logistic results/tables/
+python scripts/model_hyperparam_tuning_wrapper.py results/tables/X_train.csv results/tables/y_train.csv decision_tree results/tables/
+python scripts/model_hyperparam_tuning_wrapper.py results/tables/X_train.csv results/tables/y_train.csv knn results/tables/
+python scripts/model_hyperparam_tuning_wrapper.py results/tables/X_train.csv results/tables/y_train.csv svc results/tables/
 
 # Combine the four model tunning results into one table
-python model_table_combination.py ../results/tables/ ../results/tables/
+python scripts/model_table_combination.py results/tables/ results/tables/
 
 # Choose the best performance model: SVC and fit on test data 
-python test_set_deployment.py ../results/tables/ ../results/tables/ ../results/tables/ ../results/tables/ ../results/tables/ ../results/tables/
+python scripts/test_set_deployment.py results/tables/ results/tables/ results/tables/ results/tables/ results/tables/ results/tables/
 
 # Confusion matrix for the best model SVC performance on the test data
-python confusion_matrix.py --model=../results/models/best_pipe.pickle --x_test_path=../results/tables/X_test.csv --y_test_path=../results/tables/y_test.csv --output_file=../results/figures/confusion_matrix_plot.png
+python scripts/confusion_matrix.py --model=results/models/best_pipe.pickle --x_test_path=results/tables/X_test.csv --y_test_path=results/tables/y_test.csv --output_file=results/figures/confusion_matrix_plot.png
 
 # Correlation matrix for all red wine physiochemical features in the data frame
-python correlation_matrix.py ../data/winequality-red.csv ../results/figures/correlation_matrix_plot.png
-```
-8. Navigate back to root of project directory
-``` bash
-cd ..
+python scripts/correlation_matrix.py data/winequality-red.csv results/figures/correlation_matrix_plot.png
 ```
 
-9. Run the following commands to apply kernel for building the jupyter-book:
+7. Run the following commands to apply kernel for building the jupyter-book:
 ``` bash
 python -m ipykernel install --user --name conda-env-red_wine_quality_prediction-py
 ```
 
-10. Build the jupyter-book:
+8. Build the jupyter-book:
 ``` bash
 jupyter-book build report
 ```
 The full report can now be viewed at the `/report/_build/html/index.html` file.
 
-11. (Only do this and the following steps if you intend on deploying the report as a Github page)
+9. (Only do this and the following steps if you intend on deploying the report as a Github page)
 Create a folder named `docs` (**NO OTHER NAME IS ALLOWED**) in the project root directory.
 
-12. Copy **ALL** the files in the `/report/_build/html/` directory to the `docs` folder you just created.
+10. Copy **ALL** the files in the `/report/_build/html/` directory to the `docs` folder you just created.
 
-13. Navigate to the `docs` folder in the root directory in terminal, and run the following:
+11. Navigate to the `docs` folder in the root directory in terminal, and run the following:
 ``` bash
 code .nojekyll
 ```
 Save and close the file.
 
-14. Add, commit, and push the entire project repository to Github.
+12. Add, commit, and push the entire project repository to Github.
 
-15. On your repository page on Github, navigate to `Settings` $\rightarrow$ `Pages` and under `Build and deployment`, select `Deploy from a branch`. For the two dropdown tables right below it, select `main` and `/docs` for each.
+13. On your repository page on Github, navigate to `Settings` $\rightarrow$ `Pages` and under `Build and deployment`, select `Deploy from a branch`. For the two dropdown tables right below it, select `main` and `/docs` for each.
 
-16. Navigate to `Actions` tab in your repository page, and you will see that the Github page is being rendered. Once the operation is done (the yellow dot will turn green), navigate back to `Settings` $\rightarrow$ `Pages` and Github will tell you where your page is live at.
+14. Navigate to `Actions` tab in your repository page, and you will see that the Github page is being rendered. Once the operation is done (the yellow dot will turn green), navigate back to `Settings` $\rightarrow$ `Pages` and Github will tell you where your page is live at.
 
 ### Virtual Environment:
 There are two ways to use a virtual environment to run the analysis(you can choose one from the two). The first way will run the analysis automatically in one line. The second way is more manual and if you are interested in editing files or looking more detail into the files, you can choose the second way. 
@@ -170,7 +161,7 @@ make clean
 conda activate red_wine_quality_prediction
 ```
 
-(Next few steps are for reproducing the report from scratch. If you do not intend to do this, skip to step 5)
+(Next few steps are for reproducing the report from scratch. If you do not intend to do this, skip to step 4)
 
 2. Delete all the files in the 3 subfolders(`figures`, `models`, `tables`) of the `results` folder in the root directory. **DO NOT DELETE THESE THREE SUBFOLDERS.** You can either do it manually in your local Git repo for this project, or run the following command (**MAKE SURE YOU ARE CURRENTLY IN THE PROJECT ROOT FOLDER TO PREVENT ACCIDENTALLY DELETING ANYTHING.**)
 ``` bash
@@ -182,82 +173,64 @@ yes | rm results/models/*
 yes | rm results/tables/*
 ```
 
-3. Navigate to the `scripts` folder in the root directory in `bash`:
-``` bash
-# To check your current directory. If you have only been following this instruction, you should be in the correct one.
-# If you are not, navigate to the project root directory.
-pwd
-
-cd scripts
-```
-
-4. Run the following commands to produce all the outputs for our report from scratch:
+3. Run the following commands to produce all the outputs for our report from scratch:
 ``` bash
 # Repeating histograms for each variable in the dataset
-python plot_repeating_hists.py ../data/winequality-red.csv ../results/figures/repeating_hists_plot.png
+python scripts/plot_repeating_hists.py data/winequality-red.csv results/figures/repeating_hists_plot.png
 
 # Split data into train and test sets
-python data_split.py ../data/winequality-red.csv X_train.csv X_test.csv y_train.csv y_test.csv 0.3 522
+python scripts/data_split.py data/winequality-red.csv X_train.csv X_test.csv y_train.csv y_test.csv 0.3 522
 
 # Set dummy classifier as baseline model and return cross-validate results
-python baseline_model.py X_train.csv y_train.csv cv_results.csv
+python scripts/baseline_model.py X_train.csv y_train.csv cv_results.csv
 
 # Model tunning for logistic regression model, decision tree model, KNN model and SVC model.
 #Each generates a table for the details of the best performing one.
-python model_hyperparam_tuning_wrapper.py ../results/tables/X_train.csv ../results/tables/y_train.csv logistic ../results/tables/
-python model_hyperparam_tuning_wrapper.py ../results/tables/X_train.csv ../results/tables/y_train.csv decision_tree ../results/tables/
-python model_hyperparam_tuning_wrapper.py ../results/tables/X_train.csv ../results/tables/y_train.csv knn ../results/tables/
-python model_hyperparam_tuning_wrapper.py ../results/tables/X_train.csv ../results/tables/y_train.csv svc ../results/tables/
+python scripts/model_hyperparam_tuning_wrapper.py results/tables/X_train.csv results/tables/y_train.csv logistic results/tables/
+python scripts/model_hyperparam_tuning_wrapper.py results/tables/X_train.csv results/tables/y_train.csv decision_tree results/tables/
+python scripts/model_hyperparam_tuning_wrapper.py results/tables/X_train.csv results/tables/y_train.csv knn results/tables/
+python scripts/model_hyperparam_tuning_wrapper.py results/tables/X_train.csv results/tables/y_train.csv svc results/tables/
 
 # Combine the four model tunning results into one table
-python model_table_combination.py ../results/tables/ ../results/tables/
+python scripts/model_table_combination.py results/tables/ results/tables/
 
 # Choose the best performance model: SVC and fit on test data 
-python test_set_deployment.py ../results/tables/ ../results/tables/ ../results/tables/ ../results/tables/ ../results/tables/ ../results/tables/
+python scripts/test_set_deployment.py results/tables/ results/tables/ results/tables/ results/tables/ results/tables/ results/tables/
 
 # Confusion matrix for the best model SVC performance on the test data
-python confusion_matrix.py --model=../results/models/best_pipe.pickle --x_test_path=../results/tables/X_test.csv --y_test_path=../results/tables/y_test.csv --output_file=../results/figures/confusion_matrix_plot.png
+python scripts/confusion_matrix.py --model=results/models/best_pipe.pickle --x_test_path=results/tables/X_test.csv --y_test_path=results/tables/y_test.csv --output_file=results/figures/confusion_matrix_plot.png
 
 # Correlation matrix for all red wine physiochemical features in the data frame
-python correlation_matrix.py ../data/winequality-red.csv ../results/figures/correlation_matrix_plot.png
+python scripts/correlation_matrix.py data/winequality-red.csv results/figures/correlation_matrix_plot.png
 ```
 
-5. (Once only) Make sure you are in the `red_wine_quality_prediction` environment and run:
+4. (Once only) Make sure you are in the `red_wine_quality_prediction` environment and run:
 ``` bash
 python -m ipykernel install --user --name conda-env-red_wine_quality_prediction-py
 ```
 
-6. Navigate back to the project root directory in `bash`:
-``` bash
-# To check your current directory. If you have only been following this instruction, you should be in the correct one.
-# If you are not, navigate to the `scripts` folder in the root directory.
-pwd
-
-cd ..
-```
-
-7. Build the `jupyter-book`:
+5. Build the `jupyter-book`:
 ``` bash
 jupyter-book build report
 ```
 The full report can now be viewed at the `/report/_build/html/index.html` file.
 
-8. (Only do this and the following steps if you intend on deploying the report as a Github page)
+6. (Only do this and the following steps if you intend on deploying the report as a Github page)
 Create a folder named `docs` (**NO OTHER NAME IS ALLOWED**) in the project root directory.
 
-9. Copy **ALL** the files in the `/report/_build/html/` directory to the `docs` folder you just created.
+7. Copy **ALL** the files in the `/report/_build/html/` directory to the `docs` folder you just created.
 
-10. Navigate to the `docs` folder in the root directory in `bash`, and run the following:
+8. Navigate to the `docs` folder in the root directory in `bash`, and run the following:
 ``` bash
 code .nojekyll
 ```
 Save and close the file.
 
-11. Add, commit, and push the entire project repository to Github.
+9. Add, commit, and push the entire project repository to Github.
 
-12. On your repository page on Github, navigate to `Settings` $\rightarrow$ `Pages` and under `Build and deployment`, select `Deploy from a branch`. For the two dropdown tables right below it, select `main` and `/docs` for each.
+10. On your repository page on Github, navigate to `Settings` $\rightarrow$ `Pages` and under `Build and deployment`, select `Deploy from a branch`. For the two dropdown tables right below it, select `main` and `/docs` for each.
 
-13. Navigate to `Actions` tab in your repository page, and you will see that the Github page is being rendered. Once the operation is done (the yellow dot will turn green), navigate back to `Settings` $\rightarrow$ `Pages` and Github will tell you where your page is live at.
+11. Navigate to `Actions` tab in your repository page, and you will see that the Github page is being rendered. Once the operation is done (the yellow dot will turn green), navigate back to `Settings` $\rightarrow$ `Pages` and Github will tell you where your page is live at.
 
 ## Dependencies
 
