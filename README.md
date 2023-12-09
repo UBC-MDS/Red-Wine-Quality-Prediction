@@ -235,7 +235,7 @@ Save and close the file.
 ## Dependencies
 
 Docker:
-- [Docker](https://www.docker.com/) is the program used to build the container for the software used in this project. All dependencies are listed in the ['Dockerfile'](Dockerfile).
+- [Docker](https://www.docker.com/) is the program used to build the container for the software used in this project. All dependencies are listed in the [Dockerfile](Dockerfile).
 
 Virtual Environment:
 - `conda` (version $\geq$ 23.9.0)
