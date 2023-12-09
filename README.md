@@ -42,22 +42,33 @@ conda env create --file environment.yaml
 
 ### Docker:
 
-1. Start a new terminal session. Navigate to the root of this project repository (which you have just cloned on your local machine). Enter this command:
+There are two ways to use Docker to run the analysis(you can choose one from the two). The first way(step #1) will run the analysis automatically in one line. The second way is more manual(step #2-17) and if you are interested in editing files or look more detail into the files, you can choose the second way. Please turn on your Docker desktop. 
+
+1. The command will first load the docker container and generate all report files. Start a new terminal session. Navigate to the root of this project repository (which you have just cloned on your local machine). Enter this command:
+``` bash
+docker-compose run --rm Quality-wine-env /bin/bash -c "cd work/ && python -m ipykernel install --user --name conda-env-red_wine_quality_prediction-py && make all"
+```
+To reset the repo to a clean state, with no results files, run the following command at the terminal to root of this project repository:
+``` bash
+docker-compose run --rm Quality-wine-env /bin/bash -c "cd work/ && python -m ipykernel install --user --name conda-env-red_wine_quality_prediction-py && make clean"
+```
+
+2. Start a new terminal session. Navigate to the root of this project repository (which you have just cloned on your local machine). Enter this command:
 ``` bash
 docker compose up
 ```
 
-2. In the terminal output you will see several URLs. Copy the one which starts with 'http://127.0.0.1:8888' and paste it into your web brower URL panel
+3. In the terminal output you will see several URLs. Copy the one which starts with 'http://127.0.0.1:8888' and paste it into your web brower URL panel
 
-3. Once you are in the Jupyter Lab interface, click on the "terminal" icon. (In work directory as default)
+4. Once you are in the Jupyter Lab interface, click on the "terminal" icon. (In work directory as default)
 
-4. Navigate to project root directory
+5. Navigate to project root directory
 ``` bash
 cd work
 ```
 (Next few steps are for reproducing the report from scratch. If you do not intend to do this, skip to step 9)
 
-5. Delete all the files in the 3 subfolders(`figures`, `models`, `tables`) of the `results` folder in the root directory. **DO NOT DELETE THESE THREE SUBFOLDERS.** You can either do it manually in your local Git repo for this project, or run the following command (**MAKE SURE YOU ARE CURRENTLY IN THE PROJECT ROOT FOLDER TO PREVENT ACCIDENTALLY DELETING ANYTHING.**)
+6. Delete all the files in the 3 subfolders(`figures`, `models`, `tables`) of the `results` folder in the root directory. **DO NOT DELETE THESE THREE SUBFOLDERS.** You can either do it manually in your local Git repo for this project, or run the following command (**MAKE SURE YOU ARE CURRENTLY IN THE PROJECT ROOT FOLDER TO PREVENT ACCIDENTALLY DELETING ANYTHING.**)
 ``` bash
 # To check your current directory. Make sure you are in the project root directory.
 pwd
@@ -67,12 +78,12 @@ yes | rm results/models/*
 yes | rm results/tables/*
 ```
 
-6. Navigate to the scripts directory
+7. Navigate to the scripts directory
 ``` bash
 cd scripts
 ```
 
-7. Run the following commands to run all scripts to generate corresponding result files in results folder
+8. Run the following commands to run all scripts to generate corresponding result files in results folder
 ``` bash
 # Repeating histograms for each variable in the dataset
 python plot_repeating_hists.py ../data/winequality-red.csv ../results/figures/repeating_hists_plot.png
@@ -102,48 +113,60 @@ python confusion_matrix.py --model=../results/models/best_pipe.pickle --x_test_p
 # Correlation matrix for all red wine physiochemical features in the data frame
 python correlation_matrix.py ../data/winequality-red.csv ../results/figures/correlation_matrix_plot.png
 ```
-8. Navigate back to root of project directory
+9. Navigate back to root of project directory
 ``` bash
 cd ..
 ```
 
-9. Run the following commands to apply kernel for building the jupyter-book:
+10. Run the following commands to apply kernel for building the jupyter-book:
 ``` bash
 python -m ipykernel install --user --name conda-env-red_wine_quality_prediction-py
 ```
 
-10. Build the jupyter-book:
+11. Build the jupyter-book:
 ``` bash
 jupyter-book build report
 ```
 The full report can now be viewed at the `/report/_build/html/index.html` file.
 
-11. (Only do this and the following steps if you intend on deploying the report as a Github page)
+12. (Only do this and the following steps if you intend on deploying the report as a Github page)
 Create a folder named `docs` (**NO OTHER NAME IS ALLOWED**) in the project root directory.
 
-12. Copy **ALL** the files in the `/report/_build/html/` directory to the `docs` folder you just created.
+13. Copy **ALL** the files in the `/report/_build/html/` directory to the `docs` folder you just created.
 
-13. Navigate to the `docs` folder in the root directory in terminal, and run the following:
+14. Navigate to the `docs` folder in the root directory in terminal, and run the following:
 ``` bash
 code .nojekyll
 ```
 Save and close the file.
 
-14. Add, commit, and push the entire project repository to Github.
+15. Add, commit, and push the entire project repository to Github.
 
-15. On your repository page on Github, navigate to `Settings` $\rightarrow$ `Pages` and under `Build and deployment`, select `Deploy from a branch`. For the two dropdown tables right below it, select `main` and `/docs` for each.
+16. On your repository page on Github, navigate to `Settings` $\rightarrow$ `Pages` and under `Build and deployment`, select `Deploy from a branch`. For the two dropdown tables right below it, select `main` and `/docs` for each.
 
-16. Navigate to `Actions` tab in your repository page, and you will see that the Github page is being rendered. Once the operation is done (the yellow dot will turn green), navigate back to `Settings` $\rightarrow$ `Pages` and Github will tell you where your page is live at.
+17. Navigate to `Actions` tab in your repository page, and you will see that the Github page is being rendered. Once the operation is done (the yellow dot will turn green), navigate back to `Settings` $\rightarrow$ `Pages` and Github will tell you where your page is live at.
 
 ### Virtual Environment:
-1. Navigate to the project root directory in `bash` and run:
+There are two ways to use virtual environment to run the analysis(you can choose one from the two). The first way(step #1) will run the analysis automatically in one line. The second way is more manual(step #2-17) and if you are interested in editing files or look more detail into the files, you can choose the second way. 
+
+1. The command will activate the virtual environment and generate all report files. Start a new terminal session. Navigate to the root of this project repository (which you have just cloned on your local machine). Enter this command:
+``` bash
+conda activate red_wine_quality_prediction
+make all
+```
+To reset the repo to a clean state, with no results files, run the following command at the terminal to root of this project repository:
+``` bash
+make clean
+```
+
+2. Navigate to the project root directory in `bash` and run:
 ``` bash
 conda activate red_wine_quality_prediction
 ```
 
-(Next few steps are for reproducing the report from scratch. If you do not intend to do this, skip to step 5)
+(Next few steps are for reproducing the report from scratch. If you do not intend to do this, skip to step 6)
 
-2. Delete all the files in the 3 subfolders(`figures`, `models`, `tables`) of the `results` folder in the root directory. **DO NOT DELETE THESE THREE SUBFOLDERS.** You can either do it manually in your local Git repo for this project, or run the following command (**MAKE SURE YOU ARE CURRENTLY IN THE PROJECT ROOT FOLDER TO PREVENT ACCIDENTALLY DELETING ANYTHING.**)
+3. Delete all the files in the 3 subfolders(`figures`, `models`, `tables`) of the `results` folder in the root directory. **DO NOT DELETE THESE THREE SUBFOLDERS.** You can either do it manually in your local Git repo for this project, or run the following command (**MAKE SURE YOU ARE CURRENTLY IN THE PROJECT ROOT FOLDER TO PREVENT ACCIDENTALLY DELETING ANYTHING.**)
 ``` bash
 # To check your current directory. Make sure you are in the project root directory.
 pwd
@@ -153,7 +176,7 @@ yes | rm results/models/*
 yes | rm results/tables/*
 ```
 
-3. Navigate to the `scripts` folder in the root directory in `bash`:
+4. Navigate to the `scripts` folder in the root directory in `bash`:
 ``` bash
 # To check your current directory. If you have only been following this instruction, you should be in the correct one.
 # If you are not, navigate to the project root directory.
@@ -162,7 +185,7 @@ pwd
 cd scripts
 ```
 
-4. Run the following commands to produce all the outputs for our report from scratch:
+5. Run the following commands to produce all the outputs for our report from scratch:
 ``` bash
 # Repeating histograms for each variable in the dataset
 python plot_repeating_hists.py ../data/winequality-red.csv ../results/figures/repeating_hists_plot.png
@@ -193,12 +216,12 @@ python confusion_matrix.py --model=../results/models/best_pipe.pickle --x_test_p
 python correlation_matrix.py ../data/winequality-red.csv ../results/figures/correlation_matrix_plot.png
 ```
 
-5. (Once only) Make sure you are in the `red_wine_quality_prediction` environment and run:
+6. (Once only) Make sure you are in the `red_wine_quality_prediction` environment and run:
 ``` bash
 python -m ipykernel install --user --name conda-env-red_wine_quality_prediction-py
 ```
 
-6. Navigate back to the project root directory in `bash`:
+7. Navigate back to the project root directory in `bash`:
 ``` bash
 # To check your current directory. If you have only been following this instruction, you should be in the correct one.
 # If you are not, navigate to the `scripts` folder in the root directory.
@@ -207,28 +230,28 @@ pwd
 cd ..
 ```
 
-7. Build the `jupyter-book`:
+8. Build the `jupyter-book`:
 ``` bash
 jupyter-book build report
 ```
 The full report can now be viewed at the `/report/_build/html/index.html` file.
 
-8. (Only do this and the following steps if you intend on deploying the report as a Github page)
+9. (Only do this and the following steps if you intend on deploying the report as a Github page)
 Create a folder named `docs` (**NO OTHER NAME IS ALLOWED**) in the project root directory.
 
-9. Copy **ALL** the files in the `/report/_build/html/` directory to the `docs` folder you just created.
+10. Copy **ALL** the files in the `/report/_build/html/` directory to the `docs` folder you just created.
 
-10. Navigate to the `docs` folder in the root directory in `bash`, and run the following:
+11. Navigate to the `docs` folder in the root directory in `bash`, and run the following:
 ``` bash
 code .nojekyll
 ```
 Save and close the file.
 
-11. Add, commit, and push the entire project repository to Github.
+12. Add, commit, and push the entire project repository to Github.
 
-12. On your repository page on Github, navigate to `Settings` $\rightarrow$ `Pages` and under `Build and deployment`, select `Deploy from a branch`. For the two dropdown tables right below it, select `main` and `/docs` for each.
+13. On your repository page on Github, navigate to `Settings` $\rightarrow$ `Pages` and under `Build and deployment`, select `Deploy from a branch`. For the two dropdown tables right below it, select `main` and `/docs` for each.
 
-13. Navigate to `Actions` tab in your repository page, and you will see that the Github page is being rendered. Once the operation is done (the yellow dot will turn green), navigate back to `Settings` $\rightarrow$ `Pages` and Github will tell you where your page is live at.
+14. Navigate to `Actions` tab in your repository page, and you will see that the Github page is being rendered. Once the operation is done (the yellow dot will turn green), navigate back to `Settings` $\rightarrow$ `Pages` and Github will tell you where your page is live at.
 
 ## Dependencies
 
