@@ -47,11 +47,16 @@ There are two ways to use Docker to run the analysis(you can choose one from the
 #### Docker Approach 1 
 1. The command will first load the docker container and generate all report files. Start a new terminal session. Navigate to the root of this project repository (which you have just cloned on your local machine). Enter this command:
 ``` bash
-docker-compose run --rm Quality-wine-env /bin/bash -c "cd work/ && python -m ipykernel install --user --name conda-env-red_wine_quality_prediction-py && make all"
+docker compose run Quality-wine-env bash -c "make -C ./work all"
 ```
 To reset the repo to a clean state, with no results files, run the following command at the terminal to root of this project repository:
 ``` bash
-docker-compose run --rm Quality-wine-env /bin/bash -c "cd work/ && python -m ipykernel install --user --name conda-env-red_wine_quality_prediction-py && make clean"
+docker compose run Quality-wine-env bash -c "make -C ./work clean"
+```
+
+Note: if you obtain an error message related to the required kernel not being installed upon running the above command, please run the following command to resolve the issue and perform the make all action:
+```
+docker compose run Quality-wine-env bash -c "python -m ipykernel install --user --name conda-env-red_wine_quality_prediction-py && make -C ./work all"
 ```
 
 #### Docker Approach 2
