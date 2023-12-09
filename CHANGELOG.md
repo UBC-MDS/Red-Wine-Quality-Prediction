@@ -1,6 +1,6 @@
 # CHANGELOG
 
-This change log serves as a record of our project's evolution with focused placed on the changes made in response to feedback received during Milestone 1, Milestone 2, and the peer-review process.
+This change log serves as a record of our project's evolution with focused placed on the changes made in response to feedback received during Milestone 1, Milestone 2, and the peer-review process. The original peer-feedback can be found [here](https://github.com/UBC-MDS/data-analysis-review-2023/issues/3).
 
 ## **Peer-Review Feedback**
 
@@ -32,8 +32,8 @@ This change log serves as a record of our project's evolution with focused place
 | environment.yaml  | Versions are missing from environment.yml for some R or Python packages                            | Fixed.                                                                                                                                |    [link 1](https://github.com/UBC-MDS/Red-Wine-Quality-Prediction/commit/da224ce2c41d392e0cb6131893a08c1f4f60c612), [link 2](https://github.com/UBC-MDS/Red-Wine-Quality-Prediction/commit/beb80792d6d8d1b84b3834672b2c71b45daef23c)        |
 | license           | MIT & Creative Commons Licenses are needed.                                                        | Added Creative Commons license to previously existing MIT license.                                                                  |    [LICENSE.md update](https://github.com/UBC-MDS/Red-Wine-Quality-Prediction/commit/faa50898cb37b31fcb274a0bf126906f47fd2286), [README.md update](https://github.com/UBC-MDS/Red-Wine-Quality-Prediction/commit/16ee2b9225d2b9a623515217527c728c70fcba0c)         |
 | Introduction      | Did not clearly identify and describe the dataset that was used to answer the question.             | Described the data in detail, including explicit column descriptions.                                                               |     [link](https://github.com/UBC-MDS/Red-Wine-Quality-Prediction/commit/e0c89e1b646c1bf17505e91e164478b25e8e8a55)        |
-| Reproducibility   | Could not reproducibly run the analysis because one package was missing from the provided computational environment. | Updated environment (along with Dockerfile) to include Jupyter Notebook as a dependency.                                        |             |
-| Github Issues     | More needed.                                                                                      | Improved for prior milestones (and is on-going).                                                                                    |             |
+| Reproducibility   | Could not reproducibly run the analysis because one package was missing from the provided computational environment. | Updated environment (along with Dockerfile) to include Jupyter Notebook as a dependency.                                        |      [link](https://github.com/UBC-MDS/Red-Wine-Quality-Prediction/commit/beb80792d6d8d1b84b3834672b2c71b45daef23c)       |
+| Github Issues     | More needed.                                                                                      | Improved for prior milestones (and is on-going).                                                                                    |     [issues link](https://github.com/UBC-MDS/Red-Wine-Quality-Prediction/issues)        |
 
 
 ## **Additional Changes in Version 0.0.4**
