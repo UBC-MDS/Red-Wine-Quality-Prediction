@@ -17,7 +17,7 @@ dependencies:
     - pytest=7.4.3
     - jupyter-book=0.15.1
     - click=8.1.7
-    - seaborn=0.12.0
+    - seaborn=0.13.0
     - notebook=7.0.6
     - vl-convert-python=1.1.0
     - make
