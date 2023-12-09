@@ -5,6 +5,7 @@ import pandas as pd
 import click
 import altair as alt
 import io
+import os
 
 @click.command()
 @click.argument('file_path')
@@ -30,6 +31,10 @@ def main(file_path, output_file):
     --------
     >>> python scripts/plot_repeating_hists.py data/winequality-red.csv results/figures/repeating_hists_plot.png
     """
+    # Check if the file_path exists: 
+    if not os.path.exists(file_path):
+        raise FileNotFoundError(f"The file '{file_path}' does not exist.")
+    
     # Read the dataset
     df = pd.read_csv(file_path, delimiter=';')
 
