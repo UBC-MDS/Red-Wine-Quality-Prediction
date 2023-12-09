@@ -1,2 +1,2 @@
 model_name,mean_test_score,mean_train_score,mean_fit_time,param_model__C,param_model__class_weight
-logistic,0.5862748238308777,0.5924950119712691,0.030396032333374023,0.1,No Class Weight
+logistic,0.5862748238308777,0.5924950119712691,0.03937678337097168,0.1,No Class Weight
